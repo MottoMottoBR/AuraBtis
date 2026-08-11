@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ThunderBackup by Aurabtis - Secure, fast, and reliable device backups.">
+    <meta name="description" content="ThunderBackup by Aurabtis - Free up space, speed up your phone, and secure your data with exclusive themes.">
     <title>ThunderBackup | Built by Aurabtis</title>
     <style>
         /* CSS Reset and Base Styles */
@@ -14,140 +14,225 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
+        :root {
+            --primary-bg: #120b29;
+            --gradient-bg: linear-gradient(135deg, #4b238a 0%, #1e3c72 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #b3b9c5;
+            --accent-cyan: #00d2ff;
+            --accent-blue: #3a7bd5;
+        }
+
         body {
-            background-color: #121212;
-            color: #ffffff;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Header Section */
         header {
             text-align: center;
-            padding: 80px 20px 40px;
-            background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
+            padding: 80px 20px 60px;
+            background: var(--gradient-bg);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .logo-container {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .icon-thunder {
             font-size: 64px;
-            color: #FFB300;
+            background: -webkit-linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         h1 {
             font-size: 3.5rem;
-            color: #ffffff;
+            color: var(--text-main);
             margin-bottom: 16px;
             letter-spacing: -1px;
+            font-weight: 800;
         }
 
         h1 span {
-            color: #FFB300;
+            color: var(--accent-cyan);
         }
 
         .subtitle {
             font-size: 1.25rem;
-            color: #a0a0a0;
-            max-width: 600px;
+            color: #e0e6ed;
+            max-width: 650px;
             margin: 0 auto 40px;
+            font-weight: 400;
         }
 
         /* Call to Action Button */
         .cta-button {
             display: inline-block;
-            background-color: #FFB300;
-            color: #000000;
-            padding: 16px 40px;
+            background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+            color: #ffffff;
+            padding: 16px 45px;
             border-radius: 30px;
             font-size: 1.1rem;
             font-weight: bold;
             text-decoration: none;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            box-shadow: 0 4px 15px rgba(255, 179, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
-            background-color: #e6a200;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 210, 255, 0.5);
         }
 
-        /* Features Section */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            padding: 60px 20px;
-            max-width: 1000px;
+        /* Main Content & Features */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 60px 20px;
         }
 
-        .feature-card {
-            background-color: #1e1e1e;
-            padding: 30px;
-            border-radius: 16px;
-            flex: 1 1 300px;
+        .feature-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .feature-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-image-wrapper {
+            flex: 1;
             text-align: center;
-            border: 1px solid #2a2a2a;
         }
 
-        .feature-card h3 {
-            color: #FFB300;
-            font-size: 1.4rem;
-            margin-bottom: 12px;
+        .feature-image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid var(--card-border);
         }
 
-        .feature-card p {
-            color: #cccccc;
-            font-size: 1rem;
+        .section-tagline {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .card h3 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         /* Footer */
         footer {
             margin-top: auto;
             text-align: center;
-            padding: 30px 20px;
-            background-color: #0a0a0a;
-            border-top: 1px solid #222;
+            padding: 40px 20px;
+            background-color: #080514;
+            border-top: 1px solid var(--card-border);
         }
 
         .footer-links {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .footer-links a {
-            color: #FFB300;
+            color: var(--text-muted);
             text-decoration: none;
             margin: 0 15px;
             font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            text-decoration: underline;
+            color: var(--accent-cyan);
         }
 
         .copyright {
-            color: #666666;
+            color: #555c6b;
             font-size: 0.85rem;
         }
 
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .feature-section, .feature-section.reverse {
+                flex-direction: column;
+                text-align: center;
+            }
+            .grid-features {
+                text-align: left;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
-            .features {
-                flex-direction: column;
-                align-items: center;
+            .grid-features {
+                grid-template-columns: 1fr;
             }
-            .feature-card {
-                width: 100%;
-                max-width: 400px;
+            .feature-content h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -159,25 +244,71 @@
             <div class="icon-thunder">⚡</div>
         </div>
         <h1>Thunder<span>Backup</span></h1>
-        <p class="subtitle">Secure, fast, and reliable data protection for your mobile device. Back up your essential files with zero hassle and absolute privacy.</p>
-        <!-- Coloque o link da Google Play Store no href abaixo -->
-        <a href="#" class="cta-button">Get it on Google Play</a>
+        <p class="subtitle">The Ultimate Solution. Free up space, accelerate your device, and match your style with exclusive themes and advanced system health monitoring.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup" class="cta-button">Get it on Google Play</a>
     </header>
 
-    <section class="features">
-        <div class="feature-card">
-            <h3>🔒 Complete Privacy</h3>
-            <p>Your data stays under your control. We utilize industry-standard security protocols to keep your backups safe from unauthorized access.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🚀 Lightning Fast</h3>
-            <p>Experience high-speed backup and restore capabilities. Save your important memories and files in just a few taps.</p>
-        </div>
-        <div class="feature-card">
-            <h3>⭐ Premium Experience</h3>
-            <p>Upgrade with our VIP promotional codes to enjoy an entirely ad-free environment and unlock exclusive advanced features.</p>
-        </div>
-    </section>
+    <main class="container">
+        
+        <!-- Optimization Section -->
+        <section class="feature-section">
+            <div class="feature-content">
+                <div class="section-tagline">Performance Boost</div>
+                <h2>Free Up Space &<br>Speed Up Your Phone</h2>
+                <div class="grid-features">
+                    <div class="card">
+                        <h3>🗑️ Heavy File Detector</h3>
+                        <p>Find space-devouring hidden junk and heavy files with just 1 tap to reclaim your storage.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📑 Duplicate Cleaner</h3>
+                        <p>Automatically identify and securely remove identical photos and videos to optimize your gallery.</p>
+                    </div>
+                    <div class="card">
+                        <h3>☁️ Private Cloud & FTP</h3>
+                        <p>Transfer files directly to your personal server securely with built-in FTP/SMB support.</p>
+                    </div>
+                    <div class="card">
+                        <h3>⚙️ Hardware Health</h3>
+                        <p>Monitor your RAM usage, CPU temperature, and battery life in real-time to ensure peak performance.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-image-wrapper">
+                <img src="image_ab069f.jpg" alt="ThunderBackup System Health and Storage Cleaner Interface">
+            </div>
+        </section>
+
+        <!-- Themes Section -->
+        <section class="feature-section reverse">
+            <div class="feature-content">
+                <div class="section-tagline">Customization</div>
+                <h2>Match Your Style With<br>Exclusive Themes</h2>
+                <div class="grid-features">
+                    <div class="card">
+                        <h3>💻 Cyberpunk Futurist</h3>
+                        <p>Dive into a hacker-style interface featuring sleek system command aesthetics.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🤠 Wild West Frontier</h3>
+                        <p>A rustic, vintage western theme featuring unique visual metaphors for your files.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🌙 True OLED Dark Mode</h3>
+                        <p>Save battery life and protect your vision in total darkness with true deep blacks.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎨 Dynamic Interface Engine</h3>
+                        <p>Seamlessly switch between classic, hacker, or rustic modes with a single tap.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-image-wrapper">
+                <img src="image_ab06c1.jpg" alt="ThunderBackup Exclusive Themes Interface Showcase">
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         <div class="footer-links">
