@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Privacy Policy and Terms of Service for ThunderBackup by Aurabtis.">
-    <title>Privacy Policy | ThunderBackup</title>
+    <meta name="description" content="ThunderBackup by Aurabtis - Free up space, speed up your phone, and secure your data with exclusive themes.">
+    <title>ThunderBackup | Built by Aurabtis</title>
     <style>
         /* CSS Reset and Base Styles */
         * {
@@ -14,145 +14,189 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
+        :root {
+            --primary-bg: #120b29;
+            --gradient-bg: linear-gradient(135deg, #4b238a 0%, #1e3c72 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #b3b9c5;
+            --accent-cyan: #00d2ff;
+            --accent-blue: #3a7bd5;
+        }
+
         body {
-            background-color: #121212;
-            color: #ffffff;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Header Section */
         header {
             text-align: center;
-            padding: 60px 20px 30px;
-            background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
-            border-bottom: 1px solid #2a2a2a;
+            padding: 80px 20px 60px;
+            background: var(--gradient-bg);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .logo-container {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .icon-thunder {
-            font-size: 48px;
-            color: #FFB300;
+            font-size: 64px;
+            background: -webkit-linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 8px;
+            font-size: 3.5rem;
+            color: var(--text-main);
+            margin-bottom: 16px;
             letter-spacing: -1px;
+            font-weight: 800;
         }
 
         h1 span {
-            color: #FFB300;
+            color: var(--accent-cyan);
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            color: #a0a0a0;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.25rem;
+            color: #e0e6ed;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            font-weight: 400;
         }
 
-        /* Content Section */
-        .content-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .document-section {
-            background-color: #1e1e1e;
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid #2a2a2a;
-            margin-bottom: 40px;
-        }
-
-        .document-section h2 {
-            color: #FFB300;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-
-        .document-section h3 {
+        /* Call to Action Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
             color: #ffffff;
+            padding: 16px 45px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 210, 255, 0.5);
+        }
+
+        /* Main Content & Features */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .feature-section {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .section-tagline {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .feature-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            text-align: left;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .card h3 {
+            color: var(--text-main);
             font-size: 1.2rem;
-            margin-top: 24px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .document-section p {
-            color: #cccccc;
+        .card p {
+            color: var(--text-muted);
             font-size: 1rem;
-            margin-bottom: 16px;
-            text-align: justify;
-        }
-
-        .document-section ul {
-            color: #cccccc;
-            margin-bottom: 16px;
-            padding-left: 20px;
-        }
-
-        .document-section li {
-            margin-bottom: 8px;
-        }
-
-        .highlight-box {
-            background-color: rgba(255, 179, 0, 0.1);
-            border-left: 4px solid #FFB300;
-            padding: 16px;
-            margin: 24px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .highlight-box p {
-            margin-bottom: 0;
-            color: #e0e0e0;
+            line-height: 1.5;
         }
 
         /* Footer */
         footer {
             margin-top: auto;
             text-align: center;
-            padding: 30px 20px;
-            background-color: #0a0a0a;
-            border-top: 1px solid #222;
+            padding: 40px 20px;
+            background-color: #080514;
+            border-top: 1px solid var(--card-border);
         }
 
         .footer-links {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .footer-links a {
-            color: #FFB300;
+            color: var(--text-muted);
             text-decoration: none;
             margin: 0 15px;
             font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            text-decoration: underline;
+            color: var(--accent-cyan);
         }
 
         .copyright {
-            color: #666666;
+            color: #555c6b;
             font-size: 0.85rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .document-section {
-                padding: 24px;
-            }
             h1 {
+                font-size: 2.5rem;
+            }
+            .feature-section h2 {
                 font-size: 2rem;
             }
         }
@@ -165,85 +209,67 @@
             <div class="icon-thunder">⚡</div>
         </div>
         <h1>Thunder<span>Backup</span></h1>
-        <p class="subtitle">Legal Documents & Privacy Information</p>
+        <p class="subtitle">The Ultimate Solution. Free up space, accelerate your device, and match your style with exclusive themes and advanced system health monitoring.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup" class="cta-button">Get it on Google Play</a>
     </header>
 
-    <div class="content-container">
+    <main class="container">
         
-        <!-- PRIVACY POLICY SECTION -->
-        <section class="document-section">
-            <h2>Privacy Policy</h2>
-            <p><strong>Effective Date:</strong> July 19, 2026</p>
-
-            <p>Aurabtis ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your information is handled when you use the Thunder Backup mobile application ("the App").</p>
-
-            <h3>1. Data Collection and Usage</h3>
-            <p>Thunder Backup is designed with privacy as a core principle. The App operates locally on your device to manage and secure your files. <strong>We do not collect, transmit, store, or mirror your personal files, photos, videos, or documents to our servers or any third-party cloud.</strong></p>
-
-            <h3>2. Required Permissions</h3>
-            <p>To provide its core functionality, Thunder Backup requires certain permissions on your device:</p>
-            <ul>
-                <li><strong>Storage / Media Permissions:</strong> Required to access your files, photos, and videos exclusively for the purpose of backing them up or moving them into the encrypted Thunder Vault.</li>
-            </ul>
-
-            <h3>3. Third-Party Services</h3>
-            <p>While we do not collect your personal files, the App integrates with selected third-party services to provide necessary functionalities such as premium subscriptions and analytics:</p>
-            <ul>
-                <li><strong>RevenueCat:</strong> Used to manage in-app purchases and verify premium subscription status securely.</li>
-                <li><strong>Google Play Billing:</strong> Used to process transactions if you choose to upgrade to our premium features.</li>
-                <li><strong>AdMob (Free Version):</strong> May be used to display advertisements to free users.</li>
-            </ul>
-            <p>These services may collect anonymized device identifiers and usage data according to their own privacy policies.</p>
-
-            <h3>4. Data Security</h3>
-            <p>We implement robust security measures, including AES-256 encryption, to protect your data locally on your device. However, as no security system is impenetrable, we cannot guarantee absolute security against malicious hardware compromises or user negligence.</p>
-
-            <h3>5. Changes to This Policy</h3>
-            <p>We may update this Privacy Policy periodically. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date".</p>
-        </section>
-
-        <!-- THUNDER VAULT EULA SECTION -->
-        <section class="document-section">
-            <h2>Thunder Vault - Liability Protocol</h2>
-            <p><strong>HOLD HARMLESS AGREEMENT (EULA)</strong></p>
-            
-            <div class="highlight-box">
-                <p><strong>PLEASE READ THIS DOCUMENT CAREFULLY BEFORE PROCEEDING.</strong> BY ACCEPTING THESE TERMS AND USING THE "THUNDER VAULT" FEATURE, YOU EXPRESSLY AND IRREVOCABLY AGREE TO ALL CLAUSES BELOW. IF YOU DO NOT AGREE, DO NOT USE THIS FEATURE.</p>
+        <!-- Optimization Section -->
+        <section class="feature-section">
+            <span class="section-tagline">Performance Boost</span>
+            <h2>Free Up Space & Speed Up Your Phone</h2>
+            <div class="grid-features">
+                <div class="card">
+                    <h3>🗑️ Heavy File Detector</h3>
+                    <p>Find space-devouring hidden junk and heavy files with just 1 tap to reclaim your storage.</p>
+                </div>
+                <div class="card">
+                    <h3>📑 Duplicate Cleaner</h3>
+                    <p>Automatically identify and securely remove identical photos and videos to optimize your gallery.</p>
+                </div>
+                <div class="card">
+                    <h3>☁️ Private Cloud & FTP</h3>
+                    <p>Transfer files directly to your personal server securely with built-in FTP/SMB support.</p>
+                </div>
+                <div class="card">
+                    <h3>⚙️ Hardware Health</h3>
+                    <p>Monitor your RAM usage, CPU temperature, and battery life in real-time to ensure peak performance.</p>
+                </div>
             </div>
-
-            <h3>1. BETA AND EXPERIMENTAL PHASE</h3>
-            <p>1.1. The "Thunder Vault" feature is currently in a testing phase (BETA).</p>
-            <p>1.2. You acknowledge that, as an experimental version in development, the vault may present instabilities, bugs, unforeseen failures, and may not operate with the security, rigor, or stability of professional market software.</p>
-            <p>1.3. The use of this feature is entirely at your own risk. The responsible developer disclaims any warranty that the protection is infallible at this stage of the project.</p>
-
-            <h3>2. NATURE OF THE SERVICE AND LOCAL ENCRYPTION</h3>
-            <p>2.1. Thunder Vault uses advanced encryption (AES-256 standard) executed exclusively locally on your device.</p>
-            <p>2.2. No data, encryption keys, PINs, or files are transmitted, mirrored, or stored on external or cloud servers by the developers of this app. All security resides physically on your device's hardware.</p>
-
-            <h3>3. FULL EXEMPTION FROM LIABILITY FOR DATA LOSS</h3>
-            <p>3.1. The developer and the company responsible for this app disclaim ANY liability for the loss, corruption, leakage, or inaccessibility of files stored within the vault.</p>
-            <p>3.2. The responsibility for keeping, memorizing, and managing the access PIN is SOLELY AND EXCLUSIVELY the user's. There is NO backdoor, email recovery, password hint, or technical means that allows the developers to recover access to your data in case you forget it.</p>
-            <p>3.3. If you forget your PIN, YOUR FILES WILL BE PERMANENTLY LOST and cannot be recovered by anyone, not even with forensic tools.</p>
-
-            <h3>4. UNINSTALLATION, CACHE CLEARING, AND FORMATTING</h3>
-            <p>4.1. The user acknowledges that uninstalling this app, clearing app data/cache through the OS settings, or formatting the device will result in the IRREVERSIBLE DESTRUCTION of the encryption keys and all files stored in the vault.</p>
-            <p>4.2. It is the user's obligation to restore (decrypt) all files back to the device's public memory BEFORE performing any uninstallation procedure or changing devices.</p>
-
-            <h3>5. HARDWARE AND SOFTWARE FAILURES</h3>
-            <p>5.1. The application is provided "as is". We do not guarantee that the vault feature will be free from interruptions or errors resulting from OS updates, device memory corruption, or third-party malware (virus) attacks.</p>
-            <p>5.2. The user waives the right to claim any financial compensation, moral, or material damages arising from the loss of photos, videos, documents, or any other intellectual property kept within this vault.</p>
-
-            <h3>6. USER'S CIVIL AND CRIMINAL LIABILITY</h3>
-            <p>6.1. The hiding feature must not be used to store illegal content resulting from criminal offenses or that violate human rights and the current laws of your country.</p>
-            <p>6.2. The developer will actively cooperate with judicial authorities if the device is seized by legal means, clarifying, however, the technical impossibility of breaking the encryption without the user's password.</p>
         </section>
 
-    </div>
+        <!-- Themes Section -->
+        <section class="feature-section">
+            <span class="section-tagline">Customization</span>
+            <h2>Match Your Style With Exclusive Themes</h2>
+            <div class="grid-features">
+                <div class="card">
+                    <h3>💻 Cyberpunk Futurist</h3>
+                    <p>Dive into a hacker-style interface featuring sleek system command aesthetics.</p>
+                </div>
+                <div class="card">
+                    <h3>🤠 Wild West Frontier</h3>
+                    <p>A rustic, vintage western theme featuring unique visual metaphors for your files.</p>
+                </div>
+                <div class="card">
+                    <h3>🌙 True OLED Dark Mode</h3>
+                    <p>Save battery life and protect your vision in total darkness with true deep blacks.</p>
+                </div>
+                <div class="card">
+                    <h3>🎨 Dynamic Interface Engine</h3>
+                    <p>Seamlessly switch between classic, hacker, or rustic modes with a single tap.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         <div class="footer-links">
             <a href="mailto:support@aurabtis.com">Support</a>
-            <a href="#">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
         </div>
         <p class="copyright">&copy; 2026 Aurabtis. All rights reserved.</p>
     </footer>
