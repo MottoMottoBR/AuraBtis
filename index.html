@@ -1,477 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080A14">
-<meta name="description" content="Thunder Backup by Aurabtis — powerful, private and practical tools for managing, protecting and optimizing your Android device.">
-<title>Thunder Backup | Aurabtis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraBtis - Soluções Digitais e Aplicativos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-<style>
-:root{
-  --bg:#080a14;
-  --bg2:#0d1120;
-  --panel:#11172a;
-  --panel2:#151c31;
-  --text:#f7f8ff;
-  --muted:#a8b0c5;
-  --dim:#707991;
-  --blue:#4da3ff;
-  --cyan:#19d9ff;
-  --purple:#7657ff;
-  --yellow:#ffb300;
-  --green:#35df86;
-  --border:rgba(255,255,255,.09);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 15% 0%,rgba(118,87,255,.20),transparent 34rem),
-    radial-gradient(circle at 90% 18%,rgba(25,217,255,.10),transparent 30rem),
-    linear-gradient(180deg,var(--bg),#090c17 55%,#0b0f1b);
-  line-height:1.6;
-}
-a{text-decoration:none;color:inherit}
-.container{width:min(1120px,calc(100% - 36px));margin:auto}
+        body {
+            background-color: #0c0d14;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px;
+        }
 
-/* Navigation */
-nav{
-  position:sticky;top:0;z-index:20;
-  background:rgba(8,10,20,.90);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(14px);
-}
-.nav{
-  min-height:72px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
-.logo{
-  width:38px;height:38px;border-radius:12px;
-  display:grid;place-items:center;
-  background:linear-gradient(145deg,#ffd15c,#ff9f00);
-  color:#111;font-size:20px;
-}
-.brand b{color:var(--yellow)}
-.links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px}
-.links a:hover{color:#fff}
-.nav-button{
-  padding:10px 17px;border-radius:999px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  color:#fff!important;font-weight:800;
-}
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-/* Hero */
-.hero{padding:105px 0 90px;text-align:center}
-.badge{
-  display:inline-block;
-  padding:7px 13px;border-radius:999px;
-  background:rgba(77,163,255,.09);
-  border:1px solid rgba(77,163,255,.25);
-  color:#a9d4ff;font-size:11px;
-  font-weight:900;letter-spacing:.11em;text-transform:uppercase;
-}
-h1{
-  margin:25px auto 0;
-  max-width:850px;
-  font-size:clamp(3rem,7vw,6rem);
-  line-height:.98;
-  letter-spacing:-.065em;
-}
-.gradient{
-  background:linear-gradient(100deg,#fff,#cfd7ff 40%,#63b8ff 72%,#8c76ff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.hero p{
-  max-width:700px;margin:25px auto 0;
-  color:var(--muted);font-size:18px;
-}
-.actions{
-  margin-top:34px;
-  display:flex;justify-content:center;gap:13px;flex-wrap:wrap;
-}
-.button{
-  min-height:52px;padding:0 23px;
-  display:inline-flex;align-items:center;justify-content:center;
-  border-radius:14px;font-weight:800;font-size:14px;
-  border:1px solid var(--border);
-}
-.primary{
-  background:linear-gradient(135deg,#ffd15c,#ffad00);
-  color:#101010;
-  box-shadow:0 14px 35px rgba(255,179,0,.18);
-}
-.secondary{background:rgba(255,255,255,.045)}
-.small{margin-top:15px!important;font-size:12px!important;color:var(--dim)!important}
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
 
-/* Stats */
-.stats{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.018);
-}
-.stats-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-}
-.stat{
-  text-align:center;padding:28px 15px;
-  border-right:1px solid var(--border);
-}
-.stat:last-child{border-right:0}
-.stat strong{display:block;font-size:16px}
-.stat span{color:var(--muted);font-size:12px}
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
 
-/* Sections */
-section{padding:100px 0}
-.heading{text-align:center;max-width:760px;margin:0 auto 50px}
-.eyebrow{
-  color:#70b9ff;text-transform:uppercase;
-  letter-spacing:.14em;font-size:11px;font-weight:900;
-  margin-bottom:12px;
-}
-h2{font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;letter-spacing:-.05em}
-.heading p{margin-top:16px;color:var(--muted)}
+        .cards-container {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            max-width: 900px;
+            width: 100%;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
 
-.cards{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-}
-.card{
-  padding:28px;border-radius:23px;
-  background:linear-gradient(145deg,rgba(21,28,49,.9),rgba(12,16,29,.95));
-  border:1px solid var(--border);
-}
-.icon{
-  width:48px;height:48px;border-radius:15px;
-  display:grid;place-items:center;
-  background:rgba(77,163,255,.10);
-  border:1px solid rgba(77,163,255,.16);
-  font-size:21px;margin-bottom:20px;
-}
-.card h3{font-size:19px;margin-bottom:8px}
-.card p{font-size:14px;color:var(--muted)}
+        .card {
+            background: #171822;
+            border: 1px solid #282a36;
+            border-radius: 20px;
+            padding: 32px 24px;
+            flex: 1 1 380px;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
 
-/* Highlight */
-.highlight{
-  display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center;
-}
-.text-box h3{font-size:34px;line-height:1.1;letter-spacing:-.04em}
-.text-box p{margin-top:16px;color:var(--muted)}
-.checks{margin-top:25px;display:grid;gap:14px}
-.check{display:flex;gap:11px;color:#dce2f2;font-size:14px}
-.check i{
-  flex:0 0 22px;width:22px;height:22px;
-  border-radius:50%;display:grid;place-items:center;
-  background:rgba(53,223,134,.12);color:var(--green);
-  font-style:normal;font-size:12px;
-}
-.info-panel{
-  padding:35px;border-radius:28px;
-  background:linear-gradient(145deg,#151c34,#0d1221);
-  border:1px solid var(--border);
-}
-.info-panel .top{
-  color:var(--dim);font-size:12px;text-transform:uppercase;
-  letter-spacing:.12em;font-weight:800;
-}
-.info-panel .number{
-  font-size:55px;font-weight:900;line-height:1;
-  margin:15px 0 8px;
-  background:linear-gradient(100deg,#fff,#63b8ff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.progress{height:9px;border-radius:99px;background:#242b40;overflow:hidden;margin:20px 0}
-.progress span{display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:99px}
-.mini-list{display:grid;gap:11px;margin-top:25px}
-.mini{
-  display:flex;justify-content:space-between;
-  padding:12px 0;border-bottom:1px solid var(--border);
-  font-size:13px;
-}
-.mini:last-child{border-bottom:0}
-.mini span{color:var(--muted)}
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #7c3aed;
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.25);
+        }
 
-/* Steps */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.step{
-  padding:30px;border-radius:22px;
-  background:#0f1424;border:1px solid var(--border);
-}
-.num{
-  width:35px;height:35px;border-radius:11px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  font-size:12px;font-weight:900;margin-bottom:19px;
-}
-.step h3{font-size:18px}
-.step p{color:var(--muted);font-size:14px;margin-top:8px}
+        .card-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
 
-/* CTA */
-.cta{
-  text-align:center;padding:70px 35px;border-radius:32px;
-  background:
-    radial-gradient(circle at 10% 20%,rgba(118,87,255,.23),transparent 30%),
-    radial-gradient(circle at 90% 80%,rgba(25,217,255,.13),transparent 30%),
-    linear-gradient(135deg,#12182c,#0b0f1d);
-  border:1px solid rgba(118,87,255,.22);
-}
-.cta p{max-width:650px;margin:16px auto 0;color:var(--muted)}
-.cta .actions{margin-top:28px}
+        .card-auradown .card-icon {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        }
 
-/* Footer */
-footer{border-top:1px solid var(--border);padding:42px 0 28px}
-.footer{
-  display:flex;justify-content:space-between;gap:30px;
-  align-items:flex-start;
-}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-.footer-links a:hover{color:#fff}
-.copy{margin-top:30px;color:var(--dim);font-size:12px}
+        .card-thunder .card-icon {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        }
 
-/* Responsive */
-@media(max-width:850px){
-  .links a:not(.nav-button){display:none}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(2){border-right:0}
-  .stat:nth-child(-n+2){border-bottom:1px solid var(--border)}
-  .cards,.steps,.highlight{grid-template-columns:1fr}
-  .highlight{gap:30px}
-}
-@media(max-width:520px){
-  .container{width:calc(100% - 28px)}
-  .hero{padding:75px 0 65px}
-  section{padding:75px 0}
-  .hero p{font-size:16px}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .stat{padding:22px 8px}
-  .footer{flex-direction:column}
-  .cta{padding:50px 22px}
-}
-</style>
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .card-button {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-block;
+            transition: opacity 0.2s ease;
+        }
+
+        .card-auradown .card-button {
+            background: linear-gradient(90deg, #7c3aed 0%, #6366f1 100%);
+            color: #ffffff;
+        }
+
+        .card-thunder .card-button {
+            background: linear-gradient(90deg, #2563eb 0%, #0891b2 100%);
+            color: #ffffff;
+        }
+
+        .card:hover .card-button {
+            opacity: 0.9;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<nav>
-  <div class="container nav">
-    <a class="brand" href="#top">
-      <div class="logo">⚡</div>
-      <span>Thunder<b>Backup</b></span>
-    </a>
-    <div class="links">
-      <a href="#features">Features</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="#themes">Themes</a>
-      <a href="#how">How it works</a>
-      <a class="nav-button" href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">Google Play</a>
-    </div>
-  </div>
-</nav>
+    <header class="header">
+        <h1>AuraBtis</h1>
+        <p>Escolha a ferramenta que você deseja acessar agora</p>
+    </header>
 
-<main id="top">
+    <main class="cards-container">
+        <!-- Card 1: AuraDown -->
+        <a href="https://auradown.aurabtis.com" class="card card-auradown">
+            <div>
+                <div class="card-icon">⚡</div>
+                <h2>AuraDown</h2>
+                <p>Baixe vídeos, áudios e imagens em alta qualidade de mais de 1.000 redes sociais diretamente no navegador, sem instalar nada.</p>
+            </div>
+            <span class="card-button">Acessar Downloader Web</span>
+        </a>
 
-<section class="hero">
-  <div class="container">
-    <div class="badge">⚡ Built for Android · Privacy first</div>
-    <h1><span class="gradient">Take control</span> of your files.</h1>
-    <p>
-      Thunder Backup is a powerful all-in-one utility for backing up,
-      organizing, cleaning and understanding the storage on your Android device.
-      Built for people who want more control with less complexity.
-    </p>
-    <div class="actions">
-      <a class="button primary" href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">⚡ Get it on Google Play</a>
-      <a class="button secondary" href="#features">Explore features ↓</a>
-    </div>
-    <p class="small">Your files. Your device. Your control.</p>
-  </div>
-</section>
+        <!-- Card 2: Thunder Backup -->
+        <a href="https://thunderbackup.aurabtis.com" class="card card-thunder">
+            <div>
+                <div class="card-icon">🛡️</div>
+                <h2>Thunder Backup</h2>
+                <p>Gerenciador de arquivos completo e cofre privado com criptografia para proteger suas fotos, vídeos e documentos confidenciais no Android.</p>
+            </div>
+            <span class="card-button">Conhecer o Aplicativo</span>
+        </a>
+    </main>
 
-<div class="stats">
-  <div class="container stats-grid">
-    <div class="stat"><strong>Backup & Restore</strong><span>Protect important files</span></div>
-    <div class="stat"><strong>Smart Cleanup</strong><span>Recover wasted space</span></div>
-    <div class="stat"><strong>Storage Insights</strong><span>Understand your device</span></div>
-    <div class="stat"><strong>Custom Themes</strong><span>Make it yours</span></div>
-  </div>
-</div>
-
-<section id="features">
-  <div class="container">
-    <div class="heading">
-      <div class="eyebrow">One app. More control.</div>
-      <h2>Powerful tools without unnecessary complexity.</h2>
-      <p>Thunder Backup brings practical storage and file-management tools together in one modern Android experience.</p>
-    </div>
-
-    <div class="cards">
-      <article class="card">
-        <div class="icon">🛡️</div>
-        <h3>Backup & Restore</h3>
-        <p>Protect important files and restore them when you need them. Keep your data organized and under your control.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🧹</div>
-        <h3>Smart Cleanup</h3>
-        <p>Find large files, old downloads and other storage consumers so you can reclaim space with confidence.</p>
-      </article>
-      <article class="card">
-        <div class="icon">📊</div>
-        <h3>Storage Insights</h3>
-        <p>See how your storage is being used through clear categories and straightforward information.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🔎</div>
-        <h3>Duplicate Detection</h3>
-        <p>Identify repeated photos and videos and review them before deciding what should be removed.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🚀</div>
-        <h3>Fast & Practical</h3>
-        <p>Designed to help you complete everyday storage tasks quickly, without a cluttered interface.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🎨</div>
-        <h3>Personal Themes</h3>
-        <p>Choose a distinctive visual style and make your utility app feel more personal.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="privacy">
-  <div class="container highlight">
-    <div class="text-box">
-      <div class="eyebrow">Storage intelligence</div>
-      <h3>Know what is consuming your device.</h3>
-      <p>
-        Stop guessing where your storage went. Thunder Backup organizes device
-        information into a clear view so you can make informed decisions.
-      </p>
-      <div class="checks">
-        <div class="check"><i>✓</i><div><strong>Large files</strong><br>Spot files consuming the most space.</div></div>
-        <div class="check"><i>✓</i><div><strong>Duplicate media</strong><br>Review repeated photos and videos before cleanup.</div></div>
-        <div class="check"><i>✓</i><div><strong>Device information</strong><br>Monitor storage and important system information in one place.</div></div>
-      </div>
-    </div>
-
-    <div class="info-panel">
-      <div class="top">Storage overview</div>
-      <div class="number">78%</div>
-      <div>Storage currently in use</div>
-      <div class="progress"><span></span></div>
-      <div class="mini-list">
-        <div class="mini"><span>Images</span><b>17.0 GB</b></div>
-        <div class="mini"><span>Videos</span><b>8.3 GB</b></div>
-        <div class="mini"><span>Documents</span><b>1.7 GB</b></div>
-        <div class="mini"><span>Downloads</span><b>2.4 GB</b></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="themes">
-  <div class="container">
-    <div class="heading">
-      <div class="eyebrow">Make it yours</div>
-      <h2>Utility with personality.</h2>
-      <p>Thunder Backup can adapt to your style instead of looking like every other system utility.</p>
-    </div>
-
-    <div class="cards">
-      <article class="card">
-        <div class="icon">⌘</div>
-        <h3>Cyberpunk Futuristic</h3>
-        <p>A futuristic interface inspired by terminals, neon systems and advanced technology.</p>
-      </article>
-      <article class="card">
-        <div class="icon">◐</div>
-        <h3>Dark OLED</h3>
-        <p>A deep dark experience designed for comfortable use and a focused visual hierarchy.</p>
-      </article>
-      <article class="card">
-        <div class="icon">★</div>
-        <h3>Frontier</h3>
-        <p>A distinctive Old West-inspired visual identity that gives your utility a completely different personality.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="container">
-    <div class="heading">
-      <div class="eyebrow">Simple by design</div>
-      <h2>Three steps. More control.</h2>
-      <p>The interface stays simple even when the tools underneath are powerful.</p>
-    </div>
-
-    <div class="steps">
-      <article class="step">
-        <div class="num">01</div>
-        <h3>Scan</h3>
-        <p>Analyze your storage and identify files, categories, duplicates and opportunities to recover space.</p>
-      </article>
-      <article class="step">
-        <div class="num">02</div>
-        <h3>Review</h3>
-        <p>See what was found before taking action. You decide what stays, what gets backed up and what gets removed.</p>
-      </article>
-      <article class="step">
-        <div class="num">03</div>
-        <h3>Take action</h3>
-        <p>Protect important files, clean unnecessary data and keep your Android device organized.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="cta">
-      <div class="eyebrow">Ready to take control?</div>
-      <h2>Give your storage a smarter way to work.</h2>
-      <p>Download Thunder Backup and explore a powerful toolkit built for people who want more control over their files.</p>
-      <div class="actions">
-        <a class="button primary" href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">⚡ Download Thunder Backup</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="terms" style="padding-top:20px">
-  <div class="container">
-    <div class="heading" style="margin-bottom:0">
-      <div class="eyebrow">Information</div>
-      <p>
-        Thunder Backup is developed by Aurabtis. Product features and availability
-        may change as the application evolves.
-      </p>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer">
-      <a class="brand" href="#top">
-        <div class="logo">⚡</div>
-        <span>Thunder<b>Backup</b></span>
-      </a>
-      <div class="footer-links">
-        <a href="mailto:support@aurabtis.com">Support</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="#terms">Terms</a>
-        <a href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">Google Play</a>
-      </div>
-    </div>
-    <div class="copy">© 2026 Aurabtis. All rights reserved. Thunder Backup is a product by Aurabtis.</div>
-  </div>
-</footer>
+    <footer class="footer">
+        <p>&copy; 2026 AuraBtis. Todos os direitos reservados.</p>
+    </footer>
 
 </body>
 </html>
