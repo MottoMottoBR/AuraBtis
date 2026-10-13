@@ -1,477 +1,731 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080A14">
-<meta name="description" content="Thunder Backup by Aurabtis — powerful, private and practical tools for managing, protecting and optimizing your Android device.">
-<title>Thunder Backup | Aurabtis</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Thunder Backup - Gerenciador e Cofre</title>
+  <meta id="meta-desc" name="description" content="Thunder Backup: Proteja fotos, vídeos e gerencie arquivos com criptografia e segurança no Android.">
 
-<style>
-:root{
-  --bg:#080a14;
-  --bg2:#0d1120;
-  --panel:#11172a;
-  --panel2:#151c31;
-  --text:#f7f8ff;
-  --muted:#a8b0c5;
-  --dim:#707991;
-  --blue:#4da3ff;
-  --cyan:#19d9ff;
-  --purple:#7657ff;
-  --yellow:#ffb300;
-  --green:#35df86;
-  --border:rgba(255,255,255,.09);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 15% 0%,rgba(118,87,255,.20),transparent 34rem),
-    radial-gradient(circle at 90% 18%,rgba(25,217,255,.10),transparent 30rem),
-    linear-gradient(180deg,var(--bg),#090c17 55%,#0b0f1b);
-  line-height:1.6;
-}
-a{text-decoration:none;color:inherit}
-.container{width:min(1120px,calc(100% - 36px));margin:auto}
+  <style>
+    :root {
+        /* Tema Cyberpunk Baseado na Interface do App */
+        --bg-base: #0a0e17; /* Fundo extremamente escuro */
+        --bg-grid: #131a2a;
+        --accent-cyan: #00d2ff;
+        --accent-blue: #3a7bd5;
+        --accent-red: #ff3366;
+        --accent-green: #00e676;
 
-/* Navigation */
-nav{
-  position:sticky;top:0;z-index:20;
-  background:rgba(8,10,20,.90);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(14px);
-}
-.nav{
-  min-height:72px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
-.logo{
-  width:38px;height:38px;border-radius:12px;
-  display:grid;place-items:center;
-  background:linear-gradient(145deg,#ffd15c,#ff9f00);
-  color:#111;font-size:20px;
-}
-.brand b{color:var(--yellow)}
-.links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px}
-.links a:hover{color:#fff}
-.nav-button{
-  padding:10px 17px;border-radius:999px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  color:#fff!important;font-weight:800;
-}
+        --text-main: #ffffff;
+        --text-sub: #8b9bb4;
+        --card-bg: rgba(19, 26, 42, 0.7);
 
-/* Hero */
-.hero{padding:105px 0 90px;text-align:center}
-.badge{
-  display:inline-block;
-  padding:7px 13px;border-radius:999px;
-  background:rgba(77,163,255,.09);
-  border:1px solid rgba(77,163,255,.25);
-  color:#a9d4ff;font-size:11px;
-  font-weight:900;letter-spacing:.11em;text-transform:uppercase;
-}
-h1{
-  margin:25px auto 0;
-  max-width:850px;
-  font-size:clamp(3rem,7vw,6rem);
-  line-height:.98;
-  letter-spacing:-.065em;
-}
-.gradient{
-  background:linear-gradient(100deg,#fff,#cfd7ff 40%,#63b8ff 72%,#8c76ff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.hero p{
-  max-width:700px;margin:25px auto 0;
-  color:var(--muted);font-size:18px;
-}
-.actions{
-  margin-top:34px;
-  display:flex;justify-content:center;gap:13px;flex-wrap:wrap;
-}
-.button{
-  min-height:52px;padding:0 23px;
-  display:inline-flex;align-items:center;justify-content:center;
-  border-radius:14px;font-weight:800;font-size:14px;
-  border:1px solid var(--border);
-}
-.primary{
-  background:linear-gradient(135deg,#ffd15c,#ffad00);
-  color:#101010;
-  box-shadow:0 14px 35px rgba(255,179,0,.18);
-}
-.secondary{background:rgba(255,255,255,.045)}
-.small{margin-top:15px!important;font-size:12px!important;color:var(--dim)!important}
+        --font-sys: 'Courier New', Courier, monospace;
+        --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-/* Stats */
-.stats{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.018);
-}
-.stats-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-}
-.stat{
-  text-align:center;padding:28px 15px;
-  border-right:1px solid var(--border);
-}
-.stat:last-child{border-right:0}
-.stat strong{display:block;font-size:16px}
-.stat span{color:var(--muted);font-size:12px}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-/* Sections */
-section{padding:100px 0}
-.heading{text-align:center;max-width:760px;margin:0 auto 50px}
-.eyebrow{
-  color:#70b9ff;text-transform:uppercase;
-  letter-spacing:.14em;font-size:11px;font-weight:900;
-  margin-bottom:12px;
-}
-h2{font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;letter-spacing:-.05em}
-.heading p{margin-top:16px;color:var(--muted)}
+    body {
+        background-color: var(--bg-base);
+        color: var(--text-main);
+        font-family: var(--font-main);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
 
-.cards{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-}
-.card{
-  padding:28px;border-radius:23px;
-  background:linear-gradient(145deg,rgba(21,28,49,.9),rgba(12,16,29,.95));
-  border:1px solid var(--border);
-}
-.icon{
-  width:48px;height:48px;border-radius:15px;
-  display:grid;place-items:center;
-  background:rgba(77,163,255,.10);
-  border:1px solid rgba(77,163,255,.16);
-  font-size:21px;margin-bottom:20px;
-}
-.card h3{font-size:19px;margin-bottom:8px}
-.card p{font-size:14px;color:var(--muted)}
+    /* O Fundo "Quadriculado" do seu App */
+    .background-grid {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image:
+            linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        z-index: -1;
+        pointer-events: none;
+    }
 
-/* Highlight */
-.highlight{
-  display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center;
-}
-.text-box h3{font-size:34px;line-height:1.1;letter-spacing:-.04em}
-.text-box p{margin-top:16px;color:var(--muted)}
-.checks{margin-top:25px;display:grid;gap:14px}
-.check{display:flex;gap:11px;color:#dce2f2;font-size:14px}
-.check i{
-  flex:0 0 22px;width:22px;height:22px;
-  border-radius:50%;display:grid;place-items:center;
-  background:rgba(53,223,134,.12);color:var(--green);
-  font-style:normal;font-size:12px;
-}
-.info-panel{
-  padding:35px;border-radius:28px;
-  background:linear-gradient(145deg,#151c34,#0d1221);
-  border:1px solid var(--border);
-}
-.info-panel .top{
-  color:var(--dim);font-size:12px;text-transform:uppercase;
-  letter-spacing:.12em;font-weight:800;
-}
-.info-panel .number{
-  font-size:55px;font-weight:900;line-height:1;
-  margin:15px 0 8px;
-  background:linear-gradient(100deg,#fff,#63b8ff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.progress{height:9px;border-radius:99px;background:#242b40;overflow:hidden;margin:20px 0}
-.progress span{display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:99px}
-.mini-list{display:grid;gap:11px;margin-top:25px}
-.mini{
-  display:flex;justify-content:space-between;
-  padding:12px 0;border-bottom:1px solid var(--border);
-  font-size:13px;
-}
-.mini:last-child{border-bottom:0}
-.mini span{color:var(--muted)}
+    /* Nav & Language */
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        padding: 24px;
+        position: relative;
+        z-index: 100;
+    }
 
-/* Steps */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.step{
-  padding:30px;border-radius:22px;
-  background:#0f1424;border:1px solid var(--border);
-}
-.num{
-  width:35px;height:35px;border-radius:11px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  font-size:12px;font-weight:900;margin-bottom:19px;
-}
-.step h3{font-size:18px}
-.step p{color:var(--muted);font-size:14px;margin-top:8px}
+    .lang-selector {
+        background: rgba(0,0,0,0.5);
+        border: 1px solid var(--accent-cyan);
+        color: var(--accent-cyan);
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-family: var(--font-sys);
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
 
-/* CTA */
-.cta{
-  text-align:center;padding:70px 35px;border-radius:32px;
-  background:
-    radial-gradient(circle at 10% 20%,rgba(118,87,255,.23),transparent 30%),
-    radial-gradient(circle at 90% 80%,rgba(25,217,255,.13),transparent 30%),
-    linear-gradient(135deg,#12182c,#0b0f1d);
-  border:1px solid rgba(118,87,255,.22);
-}
-.cta p{max-width:650px;margin:16px auto 0;color:var(--muted)}
-.cta .actions{margin-top:28px}
+    .lang-selector:hover {
+        background: rgba(0, 210, 255, 0.1);
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    }
 
-/* Footer */
-footer{border-top:1px solid var(--border);padding:42px 0 28px}
-.footer{
-  display:flex;justify-content:space-between;gap:30px;
-  align-items:flex-start;
-}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-.footer-links a:hover{color:#fff}
-.copy{margin-top:30px;color:var(--dim);font-size:12px}
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-/* Responsive */
-@media(max-width:850px){
-  .links a:not(.nav-button){display:none}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(2){border-right:0}
-  .stat:nth-child(-n+2){border-bottom:1px solid var(--border)}
-  .cards,.steps,.highlight{grid-template-columns:1fr}
-  .highlight{gap:30px}
-}
-@media(max-width:520px){
-  .container{width:calc(100% - 28px)}
-  .hero{padding:75px 0 65px}
-  section{padding:75px 0}
-  .hero p{font-size:16px}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .stat{padding:22px 8px}
-  .footer{flex-direction:column}
-  .cta{padding:50px 22px}
-}
-</style>
+    /* Hero Section Split Layout */
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 80vh;
+        gap: 40px;
+        padding-bottom: 60px;
+    }
+
+    .hero-content {
+        flex: 1;
+        max-width: 600px;
+    }
+
+    .sys-badge {
+        display: inline-block;
+        font-family: var(--font-sys);
+        color: var(--accent-cyan);
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        border-left: 2px solid var(--accent-cyan);
+        padding-left: 10px;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #ffffff, #8b9bb4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        color: var(--text-sub);
+        margin-bottom: 40px;
+    }
+
+    .btn-download {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: transparent;
+        color: var(--accent-cyan);
+        border: 1px solid var(--accent-cyan);
+        padding: 16px 32px;
+        font-family: var(--font-sys);
+        font-weight: bold;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .btn-download::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn-download:hover::before {
+        left: 100%;
+    }
+
+    .btn-download:hover {
+        background: rgba(0, 210, 255, 0.1);
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        text-shadow: 0 0 5px var(--accent-cyan);
+    }
+
+    /* Mockup Phone CSS Art */
+    .hero-visual {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        perspective: 1000px;
+    }
+
+    .phone-frame {
+        width: 300px;
+        height: 600px;
+        background: #000;
+        border-radius: 40px;
+        border: 4px solid #2a3441;
+        box-shadow:
+            0 0 0 2px #000,
+            0 30px 60px rgba(0,0,0,0.8),
+            -20px -20px 60px rgba(0, 210, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        transform: rotateY(-15deg) rotateX(5deg);
+        transition: transform 0.5s ease;
+    }
+
+    .phone-frame:hover {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+
+    .phone-notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 25px;
+        background: #000;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        z-index: 10;
+    }
+
+    /* UI Elements inside phone */
+    .ui-screen {
+        padding: 50px 15px 20px 15px;
+        height: 100%;
+        background: var(--bg-base);
+        background-image:
+            linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    .ui-card {
+        border: 1px solid var(--accent-cyan);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background: rgba(0, 210, 255, 0.05);
+        position: relative;
+        animation: pulse-border 4s infinite alternate;
+    }
+
+    .ui-card.danger {
+        border-color: var(--accent-red);
+        background: rgba(255, 51, 102, 0.05);
+        animation: pulse-border-danger 2s infinite alternate;
+    }
+
+    .ui-label {
+        font-family: var(--font-sys);
+        font-size: 9px;
+        color: var(--accent-cyan);
+        margin-bottom: 5px;
+    }
+
+    .ui-label.danger { color: var(--accent-red); }
+
+    .ui-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        letter-spacing: 1px;
+    }
+
+    .ui-bar-bg {
+        height: 4px;
+        background: #1a2233;
+        margin-top: 10px;
+        border-radius: 2px;
+    }
+
+    .ui-bar-fill {
+        height: 100%;
+        width: 57%;
+        background: var(--accent-cyan);
+        box-shadow: 0 0 10px var(--accent-cyan);
+        border-radius: 2px;
+    }
+
+    .ui-bar-fill.danger {
+        width: 95%;
+        background: var(--accent-red);
+        box-shadow: 0 0 10px var(--accent-red);
+    }
+
+    .ui-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .ui-grid-item {
+        background: #111827;
+        border-radius: 8px;
+        padding: 12px;
+        border: 1px solid #1f2937;
+    }
+
+    @keyframes pulse-border {
+        0% { box-shadow: 0 0 0 rgba(0, 210, 255, 0); }
+        100% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.2) inset; }
+    }
+
+    @keyframes pulse-border-danger {
+        0% { box-shadow: 0 0 0 rgba(255, 51, 102, 0); }
+        100% { box-shadow: 0 0 15px rgba(255, 51, 102, 0.2) inset; }
+    }
+
+    /* Features Section */
+    .features {
+        padding: 80px 0;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+        font-size: 2.5rem;
+        color: #fff;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .feature-box {
+        background: var(--card-bg);
+        border: 1px solid rgba(0, 210, 255, 0.1);
+        padding: 40px 30px;
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .feature-box:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .f-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--accent-cyan);
+        font-family: var(--font-sys);
+    }
+
+    .feature-box h3 {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    .feature-box p {
+        color: var(--text-sub);
+        font-size: 1rem;
+    }
+
+    /* Privacy Box (Para a Play Console) */
+    .privacy-box {
+        margin: 80px 0;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.6);
+        border-left: 4px solid var(--accent-green);
+        border-radius: 0 16px 16px 0;
+    }
+
+    .privacy-box h2 {
+        font-family: var(--font-sys);
+        color: var(--accent-green);
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .privacy-box p {
+        color: var(--text-sub);
+        margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 30px 0;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        font-family: var(--font-sys);
+        color: #556677;
+        font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+        .hero { flex-direction: column; text-align: center; padding-top: 40px; }
+        .hero-content { margin: 0 auto; }
+        .sys-badge { border-left: none; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 5px; }
+        .phone-frame { transform: none; margin-top: 40px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
-  <div class="container nav">
-    <a class="brand" href="#top">
-      <div class="logo">⚡</div>
-      <span>Thunder<b>Backup</b></span>
-    </a>
-    <div class="links">
-      <a href="#features">Features</a>
-      <a href="../privacy.html">Privacy</a>
-      <a href="#themes">Themes</a>
-      <a href="#how">How it works</a>
-      <a class="nav-button" href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">Google Play</a>
+<div class="background-grid"></div>
+
+<div class="container">
+  <!-- Navegação e Idiomas -->
+  <nav>
+    <select class="lang-selector" id="languageSelect" onchange="changeLanguage(this.value)">
+      <option value="pt">[ PT_BR ] PORTUGUÊS</option>
+      <option value="en">[ EN_US ] ENGLISH</option>
+      <option value="es">[ ES_ES ] ESPAÑOL</option>
+      <option value="fr">[ FR_FR ] FRANÇAIS</option>
+      <option value="de">[ DE_DE ] DEUTSCH</option>
+      <option value="it">[ IT_IT ] ITALIANO</option>
+      <option value="ru">[ RU_RU ] РУССКИЙ</option>
+      <option value="ja">[ JA_JP ] 日本語</option>
+      <option value="zh">[ ZH_CN ] 中文</option>
+      <option value="ko">[ KO_KR ] 한국어</option>
+    </select>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <span class="sys-badge" id="t-badge">SYS_MODULE // APLICATIVO OFICIAL ANDROID</span>
+      <h1 id="t-title">Thunder Backup & Cofre</h1>
+      <p id="t-desc">A solução de segurança extrema para gerenciar a memória do seu aparelho e blindar arquivos vitais contra acessos não autorizados.</p>
+
+      <a href="https://play.google.com/store/apps/details?id=com.thunderbackup.app" class="btn-download" target="_blank" rel="noopener noreferrer">
+        <span id="t-btn-play">Baixar na Google Play</span>
+        <span>→</span>
+      </a>
     </div>
-  </div>
-</nav>
 
-<main id="top">
+    <!-- CSS Art: Smartphone com Interface do App -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="ui-screen">
 
-<section class="hero">
-  <div class="container">
-    <div class="badge">⚡ Built for Android · Privacy first</div>
-    <h1><span class="gradient">Take control</span> of your files.</h1>
-    <p>
-      Thunder Backup is a powerful all-in-one utility for backing up,
-      organizing, cleaning and understanding the storage on your Android device.
-      Built for people who want more control with less complexity.
-    </p>
-    <div class="actions">
-      <a class="button primary" href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">⚡ Get it on Google Play</a>
-      <a class="button secondary" href="#features">Explore features ↓</a>
+          <div style="font-family: 'Courier New'; color: #fff; font-size: 18px; text-align: center; margin-bottom: 30px;">
+            <span style="color: #00d2ff;">⚡</span> THUNDER
+          </div>
+
+          <!-- Card Memória Interna -->
+          <div class="ui-card">
+            <div class="ui-label">[ PRIMARY_VOL ]</div>
+            <div class="ui-title">MEMÓRIA FLASH INTERNA</div>
+            <div style="color: #8b9bb4; font-size: 10px; margin-top: 4px;">↻ 3.38 GB FREE / 8 GB</div>
+            <div class="ui-bar-bg"><div class="ui-bar-fill"></div></div>
+          </div>
+
+          <!-- Card Cartão SD -->
+          <div class="ui-card danger">
+            <div class="ui-label danger">[ EXTERNAL_VOL ]</div>
+            <div class="ui-title">MÍDIA REMOVÍVEL [ SD ]</div>
+            <div style="color: #ff3366; font-size: 10px; margin-top: 4px;">↻ 0 B FREE / 534.76 MB</div>
+            <div class="ui-bar-bg"><div class="ui-bar-fill danger"></div></div>
+          </div>
+
+          <div style="font-family: 'Courier New'; color: #00d2ff; font-size: 10px; margin-top: 20px;">
+            SYS_MODULE
+          </div>
+          <div style="color: #fff; font-size: 14px; font-weight: bold;">
+            BLOCOS DE DADOS
+          </div>
+
+          <div class="ui-grid">
+            <div class="ui-grid-item">
+              <div style="color: #00d2ff; font-size: 20px; margin-bottom: 5px;">🖼️</div>
+              <div style="color: #fff; font-size: 10px; font-weight: bold;">IMAGENS</div>
+              <div style="color: #8b9bb4; font-size: 8px;">30 NÓS</div>
+            </div>
+            <div class="ui-grid-item">
+              <div style="color: #8b9bb4; font-size: 20px; margin-bottom: 5px;">▶️</div>
+              <div style="color: #fff; font-size: 10px; font-weight: bold;">VÍDEOS</div>
+              <div style="color: #8b9bb4; font-size: 8px;">VAZIO</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-    <p class="small">Your files. Your device. Your control.</p>
-  </div>
-</section>
+  </header>
 
-<div class="stats">
-  <div class="container stats-grid">
-    <div class="stat"><strong>Backup & Restore</strong><span>Protect important files</span></div>
-    <div class="stat"><strong>Smart Cleanup</strong><span>Recover wasted space</span></div>
-    <div class="stat"><strong>Storage Insights</strong><span>Understand your device</span></div>
-    <div class="stat"><strong>Custom Themes</strong><span>Make it yours</span></div>
-  </div>
+  <!-- Funcionalidades -->
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="f-icon">[ 01 ]</div>
+        <h3 id="t-feat1-title">Thunder Vault</h3>
+        <p id="t-feat1-desc">Cofre de segurança máxima. Oculte fotos, vídeos e documentos vitais. Os dados blindados tornam-se completamente invisíveis para a galeria padrão do sistema e exploradores de terceiros.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon">[ 02 ]</div>
+        <h3 id="t-feat2-title">Controle Absoluto</h3>
+        <p id="t-feat2-desc">Acesso raiz de alta performance à memória flash interna e mídia removível (Cartão SD/OTG). Compile, clone, mova e purgue lotes de arquivos em milissegundos.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon">[ 03 ]</div>
+        <h3 id="t-feat3-title">Motores de Tema</h3>
+        <p id="t-feat3-desc">Navegue na interface que reflete o seu estilo. Alterne entre o agressivo 'Sistema Cyberpunk', o terroso 'Rústico Country' ou o limpo 'Padrão Clássico'.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacidade (Obrigatório para Apps da Loja) -->
+  <section class="privacy-box">
+    <h2 id="t-priv-title">>> DIRETRIZES DE PRIVACIDADE E DADOS</h2>
+    <p id="t-priv-p1">O aplicativo <b>Thunder Backup</b> opera em arquitetura estritamente local (Offline-First). Solicitamos permissões de "Acesso a Todos os Arquivos" (MANAGE_EXTERNAL_STORAGE) única e exclusivamente para habilitar as funções de gerenciamento, movimentação e encriptação que você comanda.</p>
+    <p id="t-priv-p2">Os blocos de dados enviados para o Vault permanecem retidos no hardware do seu dispositivo e <b>jamais</b> são exfiltrados para nuvens ou servidores externos. Utilizamos SDKs com identificadores anônimos rigorosamente em conformidade com as Políticas de Publicidade do Google Play.</p>
+    <p style="margin-top: 20px;"><b id="t-priv-contact">CONTATO DE ENGENHARIA:</b> <span style="color: var(--accent-cyan);">contato@aurabtis.com</span></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p id="t-footer">SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL.</p>
+  </footer>
 </div>
 
-<section id="features">
-  <div class="container">
-    <div class="heading">
-      <div class="eyebrow">One app. More control.</div>
-      <h2>Powerful tools without unnecessary complexity.</h2>
-      <p>Thunder Backup brings practical storage and file-management tools together in one modern Android experience.</p>
-    </div>
+<!-- Script de Internacionalização -->
+<script>
+  const translations = {
+      en: {
+          badge: "SYS_MODULE // OFFICIAL ANDROID APP",
+          title: "Thunder Backup & Vault",
+          desc: "The extreme security solution to manage your device's memory and shield vital files against unauthorized access.",
+          btnPlay: "Download on Google Play",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Maximum security vault. Hide vital photos, videos, and documents. Shielded data becomes completely invisible to the default system gallery and third-party explorers.",
+          feat2Title: "Absolute Control",
+          feat2Desc: "High-performance root access to internal flash memory and removable media (SD Card/OTG). Compile, clone, move, and purge file batches in milliseconds.",
+          feat3Title: "Theme Engines",
+          feat3Desc: "Navigate the interface that reflects your style. Switch between the aggressive 'Cyberpunk System', the earthy 'Rustic Country', or the clean 'Classic Default'.",
+          privTitle: ">> PRIVACY & DATA GUIDELINES",
+          privP1: "The Thunder Backup app operates in a strictly local (Offline-First) architecture. We request 'All Files Access' (MANAGE_EXTERNAL_STORAGE) permissions solely to enable the management, movement, and encryption functions commanded by you.",
+          privP2: "Data blocks sent to the Vault remain retained within your device's hardware and are never exfiltrated to clouds or external servers. We use SDKs with anonymous identifiers strictly in compliance with Google Play's Advertising Policies.",
+          privContact: "ENGINEERING CONTACT:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      pt: {
+          badge: "SYS_MODULE // APLICATIVO OFICIAL ANDROID",
+          title: "Thunder Backup & Cofre",
+          desc: "A solução de segurança extrema para gerenciar a memória do seu aparelho e blindar arquivos vitais contra acessos não autorizados.",
+          btnPlay: "Baixar na Google Play",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Cofre de segurança máxima. Oculte fotos, vídeos e documentos vitais. Os dados blindados tornam-se completamente invisíveis para a galeria padrão do sistema e exploradores de terceiros.",
+          feat2Title: "Controle Absoluto",
+          feat2Desc: "Acesso raiz de alta performance à memória flash interna e mídia removível (Cartão SD/OTG). Compile, clone, mova e purgue lotes de arquivos em milissegundos.",
+          feat3Title: "Motores de Tema",
+          feat3Desc: "Navegue na interface que reflete o seu estilo. Alterne entre o agressivo 'Sistema Cyberpunk', o terroso 'Rústico Country' ou o limpo 'Padrão Clássico'.",
+          privTitle: ">> DIRETRIZES DE PRIVACIDADE E DADOS",
+          privP1: "O aplicativo Thunder Backup opera em arquitetura estritamente local (Offline-First). Solicitamos permissões de 'Acesso a Todos os Arquivos' (MANAGE_EXTERNAL_STORAGE) única e exclusivamente para habilitar as funções de gerenciamento, movimentação e encriptação que você comanda.",
+          privP2: "Os blocos de dados enviados para o Vault permanecem retidos no hardware do seu dispositivo e jamais são exfiltrados para nuvens ou servidores externos. Utilizamos SDKs com identificadores anônimos rigorosamente em conformidade com as Políticas de Publicidade do Google Play.",
+          privContact: "CONTATO DE ENGENHARIA:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      es: {
+          badge: "SYS_MODULE // APLICACIÓN OFICIAL ANDROID",
+          title: "Thunder Backup & Bóveda",
+          desc: "La solución de seguridad extrema para administrar la memoria de tu dispositivo y blindar archivos vitales contra accesos no autorizados.",
+          btnPlay: "Descargar en Google Play",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Bóveda de máxima seguridad. Oculta fotos, videos y documentos vitales. Los datos blindados se vuelven completamente invisibles para la galería predeterminada del sistema.",
+          feat2Title: "Control Absoluto",
+          feat2Desc: "Acceso de alto rendimiento a la memoria flash interna y medios extraíbles (Tarjeta SD/OTG). Compila, clona, mueve y purga lotes de archivos en milisegundos.",
+          feat3Title: "Motores de Temas",
+          feat3Desc: "Navega por la interfaz que refleja tu estilo. Alterna entre el agresivo 'Sistema Cyberpunk', el terroso 'Rústico Country' o el limpio 'Estándar Clásico'.",
+          privTitle: ">> DIRECTRICES DE PRIVACIDAD Y DATOS",
+          privP1: "La aplicación Thunder Backup opera en una arquitectura estrictamente local (Offline-First). Solicitamos permisos de 'Acceso a todos los archivos' solo para habilitar las funciones de administración que tú ordenas.",
+          privP2: "Los bloques de datos enviados al Vault permanecen retenidos en el hardware de tu dispositivo y nunca se transmiten a servidores externos. Usamos SDK con identificadores anónimos en cumplimiento con Google Play.",
+          privContact: "CONTACTO DE INGENIERÍA:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      fr: {
+          badge: "SYS_MODULE // APP OFFICIELLE ANDROID",
+          title: "Thunder Backup & Coffre",
+          desc: "La solution de sécurité extrême pour gérer la mémoire de votre appareil et protéger les fichiers vitaux contre les accès non autorisés.",
+          btnPlay: "Télécharger sur Google Play",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Coffre-fort de sécurité maximale. Cachez des photos, vidéos et documents vitaux. Les données blindées deviennent complètement invisibles pour la galerie système.",
+          feat2Title: "Contrôle Absolu",
+          feat2Desc: "Accès haute performance à la mémoire flash interne et aux médias amovibles. Compilez, clonez, déplacez et purgez des lots de fichiers en millisecondes.",
+          feat3Title: "Moteurs de Thèmes",
+          feat3Desc: "Naviguez dans l'interface qui reflète votre style : 'Système Cyberpunk', 'Rustique Country' ou 'Standard Classique'.",
+          privTitle: ">> DIRECTIVES DE CONFIDENTIALITÉ",
+          privP1: "L'application Thunder Backup fonctionne dans une architecture strictement locale (Offline-First). Nous demandons l'autorisation 'Accès à tous les fichiers' uniquement pour activer les fonctions de gestion.",
+          privP2: "Les données envoyées au Vault restent sur votre matériel et ne sont jamais transmises à des serveurs externes.",
+          privContact: "CONTACT INGÉNIERIE :",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      de: {
+          badge: "SYS_MODULE // OFFIZIELLE ANDROID-APP",
+          title: "Thunder Backup & Tresor",
+          desc: "Die extreme Sicherheitslösung zur Verwaltung Ihres Gerätespeichers und zum Schutz wichtiger Dateien vor unbefugtem Zugriff.",
+          btnPlay: "Bei Google Play herunterladen",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Tresor mit maximaler Sicherheit. Verbergen Sie wichtige Fotos und Videos. Abgeschirmte Daten werden für die Standard-Systemgalerie völlig unsichtbar.",
+          feat2Title: "Absolute Kontrolle",
+          feat2Desc: "Leistungsstarker Zugriff auf den internen Flash-Speicher und Wechselmedien (SD-Karte/OTG).",
+          feat3Title: "Themen-Engines",
+          feat3Desc: "Wechseln Sie zwischen dem aggressiven 'Cyberpunk-System', dem erdigen 'Rustic Country' oder dem sauberen 'Classic Default'.",
+          privTitle: ">> DATENSCHUTZRICHTLINIEN",
+          privP1: "Die Thunder Backup-App arbeitet in einer rein lokalen Architektur (Offline-First). Wir fordern Berechtigungen nur an, um die von Ihnen befohlenen Verwaltungsfunktionen zu aktivieren.",
+          privP2: "Daten, die an den Vault gesendet werden, verbleiben auf Ihrer Hardware und werden niemals an externe Server übertragen.",
+          privContact: "TECHNISCHER KONTAKT:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      it: {
+          badge: "SYS_MODULE // APP ANDROID UFFICIALE",
+          title: "Thunder Backup & Cassaforte",
+          desc: "La soluzione di sicurezza estrema per gestire la memoria del dispositivo e proteggere i file vitali da accessi non autorizzati.",
+          btnPlay: "Scarica su Google Play",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Cassaforte di massima sicurezza. Nascondi foto e video vitali. I dati blindati diventano completamente invisibili alla galleria predefinita.",
+          feat2Title: "Controllo Assoluto",
+          feat2Desc: "Accesso ad alte prestazioni alla memoria flash interna e ai supporti rimovibili (scheda SD / OTG).",
+          feat3Title: "Motori di Temi",
+          feat3Desc: "Passa dal 'Sistema Cyberpunk' aggressivo al 'Rustico Country' o al 'Classico Standard' pulito.",
+          privTitle: ">> LINEE GUIDA SULLA PRIVACY",
+          privP1: "L'app Thunder Backup opera in un'architettura strettamente locale. Richiediamo le autorizzazioni solo per abilitare le funzioni di gestione da te comandate.",
+          privP2: "I dati inviati al Vault rimangono sul tuo hardware e non vengono mai trasmessi a server esterni.",
+          privContact: "CONTATTO INGEGNERIA:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      ru: {
+          badge: "SYS_MODULE // ОФИЦИАЛЬНОЕ ПРИЛОЖЕНИЕ ANDROID",
+          title: "Thunder Backup и Сейф",
+          desc: "Экстремальное решение для управления памятью вашего устройства и защиты важных файлов от несанкционированного доступа.",
+          btnPlay: "Скачать в Google Play",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "Сейф максимальной безопасности. Скройте важные фото и видео. Защищенные данные становятся полностью невидимыми для стандартной галереи.",
+          feat2Title: "Абсолютный контроль",
+          feat2Desc: "Высокопроизводительный доступ к внутренней флэш-памяти и съемным носителям (SD/OTG).",
+          feat3Title: "Движки тем",
+          feat3Desc: "Переключайтесь между агрессивной 'Cyberpunk System', 'Rustic Country' или чистой 'Classic Default'.",
+          privTitle: ">> ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ",
+          privP1: "Приложение работает в строго локальной архитектуре. Мы запрашиваем разрешения только для включения функций управления.",
+          privP2: "Данные, отправленные в Vault, остаются на вашем оборудовании и никогда не передаются на внешние серверы.",
+          privContact: "ТЕХНИЧЕСКИЙ КОНТАКТ:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      ja: {
+          badge: "SYS_MODULE // 公式ANDROIDアプリ",
+          title: "Thunder Backup & Vault",
+          desc: "デバイスのメモリを管理し、不正アクセスから重要なファイルを保護する究極のセキュリティソリューション。",
+          btnPlay: "Google Playでダウンロード",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "最高セキュリティの金庫。重要な写真や動画を隠します。シールドされたデータはシステムギャラリーから完全に見えなくなります。",
+          feat2Title: "絶対的なコントロール",
+          feat2Desc: "内部フラッシュメモリとリムーバブルメディア（SDカード/OTG）への高性能アクセス。",
+          feat3Title: "テーマエンジン",
+          feat3Desc: "アグレッシブな「Cyberpunk System」、素朴な「Rustic Country」、クリーンな「Classic Default」を切り替えます。",
+          privTitle: ">> プライバシーとデータガイドライン",
+          privP1: "Thunder Backupアプリは完全にローカルで動作します。管理機能を有効にするためにのみ権限を要求します。",
+          privP2: "Vaultに送信されたデータはハードウェア内に保持され、外部サーバーに送信されることはありません。",
+          privContact: "エンジニアリング連絡先:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      zh: {
+          badge: "SYS_MODULE // 官方 ANDROID 应用",
+          title: "Thunder Backup & 保险箱",
+          desc: "管理设备内存并保护重要文件免受未经授权访问的极端安全解决方案。",
+          btnPlay: "在 Google Play 上下载",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "最高安全级别的保险箱。隐藏重要的照片和视频。受保护的数据对系统默认图库完全不可见。",
+          feat2Title: "绝对控制",
+          feat2Desc: "对内部闪存和可移动媒体 (SD卡/OTG) 的高性能访问。",
+          feat3Title: "主题引擎",
+          feat3Desc: "在极具攻击性的 'Cyberpunk 系统'、土气的 'Rustic Country' 或简洁的 '经典默认' 之间切换。",
+          privTitle: ">> 隐私与数据准则",
+          privP1: "Thunder Backup 应用程序在严格的本地架构中运行。我们仅请求权限以启用您命令的管理功能。",
+          privP2: "发送到 Vault 的数据保留在您的硬件中，绝不会传输到外部服务器。",
+          privContact: "工程联系方式：",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      },
+      ko: {
+          badge: "SYS_MODULE // 공식 ANDROID 앱",
+          title: "Thunder Backup & 금고",
+          desc: "장치 메모리를 관리하고 무단 액세스로부터 중요 파일을 보호하는 극강의 보안 솔루션입니다.",
+          btnPlay: "Google Play에서 다운로드",
+          feat1Title: "Thunder Vault",
+          feat1Desc: "최고 보안 금고. 중요한 사진과 동영상을 숨깁니다. 보호된 데이터는 시스템 갤러리에서 완전히 보이지 않게 됩니다.",
+          feat2Title: "절대적인 제어",
+          feat2Desc: "내부 플래시 메모리 및 이동식 미디어(SD 카드/OTG)에 대한 고성능 액세스.",
+          feat3Title: "테마 엔진",
+          feat3Desc: "공격적인 'Cyberpunk 시스템', 소박한 'Rustic Country' 또는 깔끔한 '기본 클래식' 중에서 전환하세요.",
+          privTitle: ">> 개인 정보 및 데이터 지침",
+          privP1: "Thunder Backup 앱은 엄격하게 로컬 아키텍처에서 작동합니다. 귀하가 지시한 관리 기능을 활성화하기 위해서만 권한을 요청합니다.",
+          privP2: "Vault로 전송된 데이터는 하드웨어에 유지되며 외부 서버로 절대 유출되지 않습니다.",
+          privContact: "엔지니어링 연락처:",
+          footer: "SYS_LOG: © 2026 THUNDER BACKUP BY AURABTIS. ALL SYSTEMS NORMAL."
+      }
+  };
 
-    <div class="cards">
-      <article class="card">
-        <div class="icon">🛡️</div>
-        <h3>Backup & Restore</h3>
-        <p>Protect important files and restore them when you need them. Keep your data organized and under your control.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🧹</div>
-        <h3>Smart Cleanup</h3>
-        <p>Find large files, old downloads and other storage consumers so you can reclaim space with confidence.</p>
-      </article>
-      <article class="card">
-        <div class="icon">📊</div>
-        <h3>Storage Insights</h3>
-        <p>See how your storage is being used through clear categories and straightforward information.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🔎</div>
-        <h3>Duplicate Detection</h3>
-        <p>Identify repeated photos and videos and review them before deciding what should be removed.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🚀</div>
-        <h3>Fast & Practical</h3>
-        <p>Designed to help you complete everyday storage tasks quickly, without a cluttered interface.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🎨</div>
-        <h3>Personal Themes</h3>
-        <p>Choose a distinctive visual style and make your utility app feel more personal.</p>
-      </article>
-    </div>
-  </div>
-</section>
+  function changeLanguage(langCode) {
+      const t = translations[langCode] || translations['pt'];
 
-<section id="privacy">
-  <div class="container highlight">
-    <div class="text-box">
-      <div class="eyebrow">Storage intelligence</div>
-      <h3>Know what is consuming your device.</h3>
-      <p>
-        Stop guessing where your storage went. Thunder Backup organizes device
-        information into a clear view so you can make informed decisions.
-      </p>
-      <div class="checks">
-        <div class="check"><i>✓</i><div><strong>Large files</strong><br>Spot files consuming the most space.</div></div>
-        <div class="check"><i>✓</i><div><strong>Duplicate media</strong><br>Review repeated photos and videos before cleanup.</div></div>
-        <div class="check"><i>✓</i><div><strong>Device information</strong><br>Monitor storage and important system information in one place.</div></div>
-      </div>
-    </div>
+      document.documentElement.lang = langCode;
+      document.getElementById("t-badge").innerText = t.badge;
+      document.getElementById("t-title").innerText = t.title;
+      document.getElementById("t-desc").innerText = t.desc;
+      document.getElementById("t-btn-play").innerText = t.btnPlay;
 
-    <div class="info-panel">
-      <div class="top">Storage overview</div>
-      <div class="number">78%</div>
-      <div>Storage currently in use</div>
-      <div class="progress"><span></span></div>
-      <div class="mini-list">
-        <div class="mini"><span>Images</span><b>17.0 GB</b></div>
-        <div class="mini"><span>Videos</span><b>8.3 GB</b></div>
-        <div class="mini"><span>Documents</span><b>1.7 GB</b></div>
-        <div class="mini"><span>Downloads</span><b>2.4 GB</b></div>
-      </div>
-    </div>
-  </div>
-</section>
+      document.getElementById("t-feat1-title").innerText = t.feat1Title;
+      document.getElementById("t-feat1-desc").innerText = t.feat1Desc;
+      document.getElementById("t-feat2-title").innerText = t.feat2Title;
+      document.getElementById("t-feat2-desc").innerText = t.feat2Desc;
+      document.getElementById("t-feat3-title").innerText = t.feat3Title;
+      document.getElementById("t-feat3-desc").innerText = t.feat3Desc;
 
-<section id="themes">
-  <div class="container">
-    <div class="heading">
-      <div class="eyebrow">Make it yours</div>
-      <h2>Utility with personality.</h2>
-      <p>Thunder Backup can adapt to your style instead of looking like every other system utility.</p>
-    </div>
+      document.getElementById("t-priv-title").innerText = t.privTitle;
+      document.getElementById("t-priv-p1").innerHTML = t.privP1;
+      document.getElementById("t-priv-p2").innerHTML = t.privP2;
+      document.getElementById("t-priv-contact").innerText = t.privContact;
 
-    <div class="cards">
-      <article class="card">
-        <div class="icon">⌘</div>
-        <h3>Cyberpunk Futuristic</h3>
-        <p>A futuristic interface inspired by terminals, neon systems and advanced technology.</p>
-      </article>
-      <article class="card">
-        <div class="icon">◐</div>
-        <h3>Dark OLED</h3>
-        <p>A deep dark experience designed for comfortable use and a focused visual hierarchy.</p>
-      </article>
-      <article class="card">
-        <div class="icon">★</div>
-        <h3>Frontier</h3>
-        <p>A distinctive Old West-inspired visual identity that gives your utility a completely different personality.</p>
-      </article>
-    </div>
-  </div>
-</section>
+      document.getElementById("t-footer").innerText = t.footer;
+  }
 
-<section id="how">
-  <div class="container">
-    <div class="heading">
-      <div class="eyebrow">Simple by design</div>
-      <h2>Three steps. More control.</h2>
-      <p>The interface stays simple even when the tools underneath are powerful.</p>
-    </div>
+  // Deteta idioma automaticamente
+  window.onload = function() {
+      var params = new URLSearchParams(window.location.search);
+      var queryLang = params.get("lang");
+      var browserLang = (navigator.language || navigator.userLanguage || "pt").slice(0, 2).toLowerCase();
 
-    <div class="steps">
-      <article class="step">
-        <div class="num">01</div>
-        <h3>Scan</h3>
-        <p>Analyze your storage and identify files, categories, duplicates and opportunities to recover space.</p>
-      </article>
-      <article class="step">
-        <div class="num">02</div>
-        <h3>Review</h3>
-        <p>See what was found before taking action. You decide what stays, what gets backed up and what gets removed.</p>
-      </article>
-      <article class="step">
-        <div class="num">03</div>
-        <h3>Take action</h3>
-        <p>Protect important files, clean unnecessary data and keep your Android device organized.</p>
-      </article>
-    </div>
-  </div>
-</section>
+      var activeLang = "pt";
+      if (queryLang && translations[queryLang]) {
+          activeLang = queryLang;
+      } else if (translations[browserLang]) {
+          activeLang = browserLang;
+      }
 
-<section>
-  <div class="container">
-    <div class="cta">
-      <div class="eyebrow">Ready to take control?</div>
-      <h2>Give your storage a smarter way to work.</h2>
-      <p>Download Thunder Backup and explore a powerful toolkit built for people who want more control over their files.</p>
-      <div class="actions">
-        <a class="button primary" href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">⚡ Download Thunder Backup</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="terms" style="padding-top:20px">
-  <div class="container">
-    <div class="heading" style="margin-bottom:0">
-      <div class="eyebrow">Information</div>
-      <p>
-        Thunder Backup is developed by Aurabtis. Product features and availability
-        may change as the application evolves.
-      </p>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer">
-      <a class="brand" href="#top">
-        <div class="logo">⚡</div>
-        <span>Thunder<b>Backup</b></span>
-      </a>
-      <div class="footer-links">
-        <a href="mailto:support@aurabtis.com">Support</a>
-        <a href="../privacy.html">Privacy</a>
-        <a href="#terms">Terms</a>
-        <a href="https://play.google.com/store/apps/details?id=com.aurabtis.thunderbackup">Google Play</a>
-      </div>
-    </div>
-    <div class="copy">© 2026 Aurabtis. All rights reserved. Thunder Backup is a product by Aurabtis.</div>
-  </div>
-</footer>
-
+      document.getElementById("languageSelect").value = activeLang;
+      changeLanguage(activeLang);
+  };
+</script>
 </body>
 </html>
