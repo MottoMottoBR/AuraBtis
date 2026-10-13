@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Evitar que os bots percam tempo de rastreio (Crawl Budget)
+Disallow: /*?replytocom=
+Disallow: /*&preview=true
+
+# Apontamento dos Sitemaps Globais
 Sitemap: https://aurabtis.com/sitemap.xml
+Sitemap: https://auradown.aurabtis.com/sitemap.xml

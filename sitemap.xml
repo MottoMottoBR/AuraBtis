@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+   <!-- ============================================================== -->
+   <!-- 1. PÁGINA INICIAL (Buscas genéricas: "Video downloader")       -->
+   <!-- ============================================================== -->
    <url>
-      <loc>https://aurabtis.com/</loc>
-      <changefreq>weekly</changefreq>
+      <loc>https://auradown.aurabtis.com/</loc>
+      <changefreq>daily</changefreq>
       <priority>1.0</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://auradown.aurabtis.com/" />
+      <xhtml:link rel="alternate" hreflang="pt" href="https://auradown.aurabtis.com/?lang=pt" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://auradown.aurabtis.com/?lang=en" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://auradown.aurabtis.com/?lang=es" />
+      <xhtml:link rel="alternate" hreflang="ru" href="https://auradown.aurabtis.com/?lang=ru" />
    </url>
+
+   <!-- ============================================================== -->
+   <!-- 2. A MINA DE OURO: TIKTOK (Sem Marca d'Água)                    -->
+   <!-- ============================================================== -->
    <url>
-      <loc>https://aurabtis.com/privacy.html</loc>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
+      <loc>https://auradown.aurabtis.com/tiktok</loc>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+      <!-- Mostra ao Google a página exata de TikTok para cada país -->
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://auradown.aurabtis.com/tiktok" />
+      <xhtml:link rel="alternate" hreflang="pt" href="https://auradown.aurabtis.com/tiktok?lang=pt" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://auradown.aurabtis.com/tiktok?lang=en" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://auradown.aurabtis.com/tiktok?lang=es" />
+      <xhtml:link rel="alternate" hreflang="ru" href="https://auradown.aurabtis.com/tiktok?lang=ru" />
+      <xhtml:link rel="alternate" hreflang="ar" href="https://auradown.aurabtis.com/tiktok?lang=ar" />
    </url>
+
+   <!-- ============================================================== -->
+   <!-- 3. FOCO: INSTAGRAM (Reels, Feed, IGTV)                         -->
+   <!-- ============================================================== -->
+   <url>
+      <loc>https://auradown.aurabtis.com/instagram</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://auradown.aurabtis.com/instagram" />
+      <xhtml:link rel="alternate" hreflang="pt" href="https://auradown.aurabtis.com/instagram?lang=pt" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://auradown.aurabtis.com/instagram?lang=en" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://auradown.aurabtis.com/instagram?lang=es" />
+      <xhtml:link rel="alternate" hreflang="ru" href="https://auradown.aurabtis.com/instagram?lang=ru" />
+   </url>
+
+   <!-- ============================================================== -->
+   <!-- 4. FOCO: X / TWITTER (Download de Vídeos e GIFs)               -->
+   <!-- ============================================================== -->
+   <url>
+      <loc>https://auradown.aurabtis.com/twitter</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://auradown.aurabtis.com/twitter" />
+      <xhtml:link rel="alternate" hreflang="pt" href="https://auradown.aurabtis.com/twitter?lang=pt" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://auradown.aurabtis.com/twitter?lang=en" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://auradown.aurabtis.com/twitter?lang=es" />
+   </url>
+
 </urlset>
