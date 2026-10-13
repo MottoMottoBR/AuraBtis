@@ -5,343 +5,551 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">AuraBtis - Soluções Digitais e Aplicativos</title>
 
-    <!-- Meta tags SEO -->
     <meta id="meta-desc" name="description" content="AuraBtis - Acesso ao AuraDown (Downloader Universal de Vídeos) e Thunder Backup (Cofre e Gerenciador de Arquivos para Android).">
 
     <style>
+        :root {
+            /* AuraBtis Core Theme - Fusão Cyberpunk & Neon */
+            --bg-deep: #060913;
+            --bg-grid: rgba(255, 255, 255, 0.03);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+
+            /* AuraDown Theme Colors (Púrpura/Índigo) */
+            --aura-primary: #8b5cf6;
+            --aura-secondary: #6366f1;
+            --aura-glow: rgba(139, 92, 246, 0.4);
+
+            /* Thunder Theme Colors (Ciano/Azul baseado na sua UI) */
+            --thunder-primary: #00d2ff;
+            --thunder-secondary: #3a7bd5;
+            --thunder-glow: rgba(0, 210, 255, 0.4);
+
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-sys: 'Courier New', Courier, monospace;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #0c0d14;
-            color: #ffffff;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fundo Animado com Malha Geométrica 3D */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(var(--bg-grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: grid-move 15s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes grid-move {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
+        }
+
+        /* Navegação e Idiomas */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .lang-selector {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 40px;
+            /* Ícone de seta personalizado */
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 10px auto;
+        }
+
+        .lang-selector:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-selector option {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+        }
+
+        /* Container Principal */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            justify-content: center;
+            padding: 0 20px;
+            z-index: 1;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+            color: #fff;
+        }
+
+        /* Efeito de Glitch (Hacker/Cyberpunk) no Título */
+        .header h1::before, .header h1::after {
+            content: 'AuraBtis';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .header h1:hover::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--thunder-primary);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            opacity: 1;
+        }
+        .header h1:hover::after {
+            left: -2px;
+            text-shadow: 2px 0 var(--aura-primary);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+            opacity: 1;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 20% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(80% 0 5% 0); }
+            40% { clip-path: inset(30% 0 20% 0); }
+            60% { clip-path: inset(70% 0 15% 0); }
+            80% { clip-path: inset(20% 0 50% 0); }
+            100% { clip-path: inset(50% 0 30% 0); }
         }
 
         .header p {
-            color: #94a3b8;
+            color: var(--thunder-primary);
             font-size: 1.1rem;
-            max-width: 600px;
+            font-family: var(--font-sys);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
         }
 
-        .cards-container {
+        /* Divisão de Cartões (Portais) */
+        .portal-grid {
             display: flex;
-            flex-direction: row;
-            gap: 24px;
-            max-width: 900px;
+            gap: 40px;
+            max-width: 1000px;
             width: 100%;
             justify-content: center;
-            align-items: stretch;
             flex-wrap: wrap;
         }
 
-        .card {
-            background: #171822;
-            border: 1px solid #282a36;
-            border-radius: 20px;
-            padding: 32px 24px;
-            flex: 1 1 380px;
-            max-width: 420px;
+        .portal-card {
+            flex: 1;
+            min-width: 320px;
+            max-width: 450px;
+            background: rgba(10, 14, 23, 0.7);
+            border-radius: 24px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
             text-align: center;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            color: inherit;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #7c3aed;
-            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.25);
+        /* Temática Específica: AuraDown */
+        .card-aura {
+            box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.1), 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .card-aura::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--aura-primary), var(--aura-secondary));
+        }
+        .card-aura:hover {
+            transform: translateY(-10px);
+            box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.4), 0 20px 40px var(--aura-glow);
+            border-color: rgba(139, 92, 246, 0.4);
         }
 
+        /* Temática Específica: Thunder Backup */
+        .card-thunder {
+            box-shadow: inset 0 0 0 1px rgba(0, 210, 255, 0.1), 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .card-thunder::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--thunder-primary), var(--thunder-secondary));
+        }
+        .card-thunder:hover {
+            transform: translateY(-10px);
+            box-shadow: inset 0 0 0 1px rgba(0, 210, 255, 0.4), 0 20px 40px var(--thunder-glow);
+            border-color: rgba(0, 210, 255, 0.4);
+        }
+
+        /* Ícones dos Cartões */
         .card-icon {
-            width: 72px;
-            height: 72px;
-            border-radius: 18px;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 32px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
         }
 
-        .card-auradown .card-icon {
-            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        .portal-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        .card-thunder .card-icon {
-            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        .card-aura .card-icon { text-shadow: 0 0 20px var(--aura-glow); }
+        .card-thunder .card-icon { text-shadow: 0 0 20px var(--thunder-glow); }
+
+        .portal-card h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
         }
 
-        .card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
+        .card-aura h2 {
+            background: linear-gradient(135deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 24px;
+        .card-thunder h2 {
+            background: linear-gradient(135deg, #fff, #7dd3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card-button {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-weight: 600;
+        .portal-card p {
+            color: var(--text-muted);
             font-size: 1rem;
-            display: inline-block;
-            transition: opacity 0.2s ease;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            flex-grow: 1;
         }
 
-        .card-auradown .card-button {
-            background: linear-gradient(90deg, #7c3aed 0%, #6366f1 100%);
-            color: #ffffff;
+        /* Botões de Ação estilo Terminal */
+        .btn-action {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: var(--font-sys);
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .card-thunder .card-button {
-            background: linear-gradient(90deg, #2563eb 0%, #0891b2 100%);
-            color: #ffffff;
+        .btn-action::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
         }
 
-        .card:hover .card-button {
-            opacity: 0.9;
+        .card-aura .btn-action {
+            background: rgba(139, 92, 246, 0.1);
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        .card-aura .btn-action::after {
+            background: linear-gradient(90deg, var(--aura-primary), var(--aura-secondary));
         }
 
-        .footer {
-            margin-top: 40px;
+        .card-thunder .btn-action {
+            background: rgba(0, 210, 255, 0.1);
+            color: #7dd3fc;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+        }
+        .card-thunder .btn-action::after {
+            background: linear-gradient(90deg, var(--thunder-primary), var(--thunder-secondary));
+        }
+
+        .portal-card:hover .btn-action {
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+        .portal-card:hover .btn-action::after {
+            opacity: 1;
+        }
+
+        /* Rodapé de Sistema */
+        footer {
             text-align: center;
-            color: #64748b;
-            font-size: 0.85rem;
+            padding: 40px;
+            color: #475569;
+            font-family: var(--font-sys);
+            font-size: 12px;
+            z-index: 1;
+            margin-top: auto;
+            letter-spacing: 2px;
         }
 
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            .cards-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .card {
-                width: 100%;
-            }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 3rem; }
+            .portal-grid { flex-direction: column; align-items: center; }
+            .portal-card { width: 100%; padding: 30px 20px; }
+            nav { padding: 20px; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-<header class="header">
-    <h1>AuraBtis</h1>
-    <p id="t-subtitle">Escolha a ferramenta que você deseja acessar agora</p>
-</header>
+<!-- Selector de Idiomas -->
+<nav>
+    <select class="lang-selector" id="languageSelect" onchange="changeLanguage(this.value)">
+        <option value="pt">[ PT_BR ] PORTUGUÊS</option>
+        <option value="en">[ EN_US ] ENGLISH</option>
+        <option value="es">[ ES_ES ] ESPAÑOL</option>
+        <option value="fr">[ FR_FR ] FRANÇAIS</option>
+        <option value="de">[ DE_DE ] DEUTSCH</option>
+        <option value="it">[ IT_IT ] ITALIANO</option>
+        <option value="ru">[ RU_RU ] РУССКИЙ</option>
+        <option value="ja">[ JA_JP ] 日本語</option>
+        <option value="zh">[ ZH_CN ] 中文</option>
+        <option value="ko">[ KO_KR ] 한국어</option>
+        <option value="ar">[ AR_SA ] العربية</option>
+        <option value="hi">[ HI_IN ] हिन्दी</option>
+    </select>
+</nav>
 
-<main class="cards-container">
-    <!-- Card 1: AuraDown -->
-    <a href="https://auradown.aurabtis.com" class="card card-auradown">
-        <div>
+<!-- Conteúdo Principal -->
+<main class="container">
+
+    <header class="header">
+        <h1>AuraBtis</h1>
+        <p id="t-subtitle">>> SELECT_DESTINATION_NODE</p>
+    </header>
+
+    <div class="portal-grid">
+
+        <!-- AuraDown Portal -->
+        <a href="https://auradown.aurabtis.com" class="portal-card card-aura">
             <div class="card-icon">⚡</div>
             <h2>AuraDown</h2>
-            <p id="t-auradown-desc">Baixe vídeos, áudios e imagens em alta qualidade de mais de 1.000 redes sociais diretamente no navegador, sem instalar nada.</p>
-        </div>
-        <span class="card-button" id="t-auradown-btn">Acessar Downloader Web</span>
-    </a>
+            <p id="t-auradown-desc">Plataforma web de extração de mídia. Baixe vídeos em alta definição, sem marcas d'água, de mais de 1.000 redes globais diretamente pelo navegador.</p>
+            <div class="btn-action" id="t-auradown-btn">INICIAR DOWNLOADER_WEB</div>
+        </a>
 
-    <!-- Card 2: Thunder Backup -->
-    <a href="https://thunderbackup.aurabtis.com" class="card card-thunder">
-        <div>
+        <!-- Thunder Backup Portal (Atualizado para a pasta local /thunder/) -->
+        <a href="/thunder/" class="portal-card card-thunder">
             <div class="card-icon">🛡️</div>
             <h2>Thunder Backup</h2>
-            <p id="t-thunder-desc">Gerenciador de arquivos completo e cofre privado com criptografia para proteger suas fotos, vídeos e documentos confidenciais no Android.</p>
-        </div>
-        <span class="card-button" id="t-thunder-btn">Conhecer o Aplicativo</span>
-    </a>
+            <p id="t-thunder-desc">Módulo Android de segurança extrema. Gerenciador de memória flash com acesso raiz e cofre criptografado invisível ao sistema.</p>
+            <div class="btn-action" id="t-thunder-btn">ACESSAR SYS_MODULE</div>
+        </a>
+
+    </div>
+
 </main>
 
-<footer class="footer">
-    <p id="t-footer">&copy; 2026 AuraBtis. Todos os direitos reservados.</p>
+<!-- Rodapé -->
+<footer>
+    <p id="t-footer">SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE.</p>
 </footer>
 
-<!-- Script de Tradução Automática (Idiomas) -->
+<!-- Script Multi-Idioma -->
 <script>
-    (function() {
-        var i18n = {
-            en: {
-                langCode: "en",
-                pageTitle: "AuraBtis - Digital Solutions & Apps",
-                metaDesc: "AuraBtis - Access AuraDown (Universal Video Downloader) and Thunder Backup (File Manager & Vault for Android).",
-                subtitle: "Choose the tool you want to access now",
-                auradownDesc: "Download high-quality videos, audio, and images from over 1,000 social networks directly in your browser, no installation required.",
-                auradownBtn: "Access Web Downloader",
-                thunderDesc: "Complete file manager and private encrypted vault to protect your sensitive photos, videos, and documents on Android.",
-                thunderBtn: "Discover the App",
-                footer: "© 2026 AuraBtis. All rights reserved."
-            },
-            pt: {
-                langCode: "pt-BR",
-                pageTitle: "AuraBtis - Soluções Digitais e Aplicativos",
-                metaDesc: "AuraBtis - Acesso ao AuraDown (Downloader Universal de Vídeos) e Thunder Backup (Cofre e Gerenciador de Arquivos para Android).",
-                subtitle: "Escolha a ferramenta que você deseja acessar agora",
-                auradownDesc: "Baixe vídeos, áudios e imagens em alta qualidade de mais de 1.000 redes sociais diretamente no navegador, sem instalar nada.",
-                auradownBtn: "Acessar Downloader Web",
-                thunderDesc: "Gerenciador de arquivos completo e cofre privado com criptografia para proteger suas fotos, vídeos e documentos confidenciais no Android.",
-                thunderBtn: "Conhecer o Aplicativo",
-                footer: "© 2026 AuraBtis. Todos os direitos reservados."
-            },
-            es: {
-                langCode: "es",
-                pageTitle: "AuraBtis - Soluciones Digitales y Aplicaciones",
-                metaDesc: "AuraBtis - Acceso a AuraDown (Descargador de Videos Universal) y Thunder Backup (Bóveda y Gestor de Archivos para Android).",
-                subtitle: "Elige la herramienta a la que deseas acceder ahora",
-                auradownDesc: "Descarga videos, audios e imágenes en alta calidad de más de 1.000 redes sociales directamente en tu navegador, sin instalar nada.",
-                auradownBtn: "Acceder al Descargador Web",
-                thunderDesc: "Completo gestor de archivos y bóveda privada con encriptación para proteger tus fotos, videos y documentos confidenciales en Android.",
-                thunderBtn: "Conocer la Aplicación",
-                footer: "© 2026 AuraBtis. Todos los derechos reservados."
-            },
-            fr: {
-                langCode: "fr",
-                pageTitle: "AuraBtis - Solutions Numériques et Applications",
-                metaDesc: "AuraBtis - Accédez à AuraDown (Téléchargeur Vidéo Universel) et Thunder Backup (Gestionnaire de Fichiers et Coffre-fort pour Android).",
-                subtitle: "Choisissez l'outil auquel vous souhaitez accéder maintenant",
-                auradownDesc: "Téléchargez des vidéos, des audios et des images en haute qualité depuis plus de 1 000 réseaux sociaux directement dans votre navigateur, sans rien installer.",
-                auradownBtn: "Accéder au Téléchargeur Web",
-                thunderDesc: "Gestionnaire de fichiers complet et coffre-fort privé crypté pour protéger vos photos, vidéos et documents sensibles sur Android.",
-                thunderBtn: "Découvrir l'Application",
-                footer: "© 2026 AuraBtis. Tous droits réservés."
-            },
-            de: {
-                langCode: "de",
-                pageTitle: "AuraBtis - Digitale Lösungen & Apps",
-                metaDesc: "AuraBtis - Zugang zu AuraDown (Universeller Video-Downloader) und Thunder Backup (Dateimanager & Tresor für Android).",
-                subtitle: "Wählen Sie das Tool aus, auf das Sie jetzt zugreifen möchten",
-                auradownDesc: "Laden Sie hochwertige Videos, Audios und Bilder aus über 1.000 sozialen Netzwerken direkt in Ihrem Browser herunter, ohne etwas zu installieren.",
-                auradownBtn: "Web-Downloader aufrufen",
-                thunderDesc: "Kompletter Dateimanager und verschlüsselter privater Tresor zum Schutz Ihrer sensiblen Fotos, Videos und Dokumente auf Android.",
-                thunderBtn: "Die App entdecken",
-                footer: "© 2026 AuraBtis. Alle Rechte vorbehalten."
-            },
-            ru: {
-                langCode: "ru",
-                pageTitle: "AuraBtis - Цифровые решения и приложения",
-                metaDesc: "AuraBtis - Доступ к AuraDown (универсальный загрузчик видео) и Thunder Backup (файловый менеджер и сейф для Android).",
-                subtitle: "Выберите инструмент, к которому вы хотите получить доступ сейчас",
-                auradownDesc: "Скачивайте видео, аудио и изображения в высоком качестве из более чем 1000 социальных сетей прямо в браузере без установки.",
-                auradownBtn: "Перейти к веб-загрузчику",
-                thunderDesc: "Полноценный файловый менеджер и зашифрованный сейф для защиты ваших конфиденциальных фотографий, видео и документов на Android.",
-                thunderBtn: "Узнать о приложении",
-                footer: "© 2026 AuraBtis. Все права защищены."
-            },
-            ja: {
-                langCode: "ja",
-                pageTitle: "AuraBtis - デジタルソリューションとアプリ",
-                metaDesc: "AuraBtis - AuraDown（ユニバーサル動画ダウンローダー）とThunder Backup（Android用ファイルマネージャー＆金庫）へのアクセス。",
-                subtitle: "今すぐアクセスしたいツールを選択してください",
-                auradownDesc: "何もインストールすることなく、ブラウザから直接1,000以上のSNSから高品質の動画、音声、画像をダウンロードできます。",
-                auradownBtn: "Webダウンローダーにアクセス",
-                thunderDesc: "Android上の機密性の高い写真、動画、ドキュメントを保護するための完全なファイルマネージャーと暗号化されたプライベート金庫。",
-                thunderBtn: "アプリを見る",
-                footer: "© 2026 AuraBtis. 全著作権所有。"
-            },
-            zh: {
-                langCode: "zh",
-                pageTitle: "AuraBtis - 数字解决方案与应用程序",
-                metaDesc: "AuraBtis - 访问 AuraDown（万能视频下载器）和 Thunder Backup（Android文件管理器与隐私保险箱）。",
-                subtitle: "请选择您现在要访问的工具",
-                auradownDesc: "无需安装任何软件，直接在浏览器中从1,000多个社交网络下载高质量的视频、音频和图片。",
-                auradownBtn: "访问网页下载器",
-                thunderDesc: "完整的文件管理器和加密隐私保险箱，可保护您在Android设备上的敏感照片、视频和文档。",
-                thunderBtn: "了解应用程序",
-                footer: "© 2026 AuraBtis. 保留所有权利。"
-            },
-            ar: {
-                langCode: "ar",
-                pageTitle: "AuraBtis - الحلول الرقمية والتطبيقات",
-                metaDesc: "AuraBtis - الوصول إلى AuraDown (محمل الفيديو الشامل) و Thunder Backup (مدير الملفات والخزنة لنظام Android).",
-                subtitle: "اختر الأداة التي ترغب في الوصول إليها الآن",
-                auradownDesc: "قم بتنزيل مقاطع الفيديو والصوتيات والصور بجودة عالية من أكثر من 1000 شبكة اجتماعية مباشرة في متصفحك، دون الحاجة لتثبيت أي شيء.",
-                auradownBtn: "الوصول إلى محمل الويب",
-                thunderDesc: "مدير ملفات متكامل وخزنة خاصة مشفرة لحماية صورك ومقاطع الفيديو والمستندات الحساسة على أندرويد.",
-                thunderBtn: "اكتشف التطبيق",
-                footer: "© 2026 AuraBtis. جميع الحقوق محفوظة."
-            },
-            hi: {
-                langCode: "hi",
-                pageTitle: "AuraBtis - डिजिटल समाधान और ऐप्स",
-                metaDesc: "AuraBtis - AuraDown (यूनिवर्सल वीडियो डाउनलोडर) और Thunder Backup (Android के लिए फ़ाइल मैनेजर और वॉल्ट) तक पहुँच।",
-                subtitle: "वह टूल चुनें जिसे आप अभी एक्सेस करना चाहते हैं",
-                auradownDesc: "बिना कुछ इंस्टॉल किए सीधे अपने ब्राउज़र में 1,000 से अधिक सोशल नेटवर्क से उच्च गुणवत्ता वाले वीडियो, ऑडियो और चित्र डाउनलोड करें।",
-                auradownBtn: "वेब डाउनलोडर पर जाएं",
-                thunderDesc: "एंड्रॉइड पर आपके संवेदनशील फ़ोटो, वीडियो और दस्तावेज़ों की सुरक्षा के लिए पूर्ण फ़ाइल मैनेजर और एन्क्रिप्टेड निजी वॉल्ट।",
-                thunderBtn: "ऐप के बारे में जानें",
-                footer: "© 2026 AuraBtis. सर्वाधिकार सुरक्षित।"
-            }
-        };
-
-        // Detecta idioma da URL ou do Navegador
-        var params = new URLSearchParams(window.location.search);
-        var queryLang = params.get("lang");
-        var browserLang = (navigator.language || navigator.userLanguage || "en").slice(0, 2).toLowerCase();
-
-        // Define o idioma ativo (prioridade para a URL, depois navegador, padrão 'en')
-        var activeLang = "en"; // Default fallback
-        if (queryLang && i18n[queryLang]) {
-            activeLang = queryLang;
-        } else if (i18n[browserLang]) {
-            activeLang = browserLang;
-        } else if (browserLang === "pt") {
-            activeLang = "pt"; // Mapeamento direto
+    const translations = {
+        en: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Media extraction web platform. Download high-definition videos, watermark-free, from over 1,000 global networks directly through your browser.",
+            auradownBtn: "INIT WEB_DOWNLOADER",
+            thunderDesc: "Extreme security Android module. Flash memory manager with root access and encrypted vault invisible to the system.",
+            thunderBtn: "ACCESS SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        pt: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Plataforma web de extração de mídia. Baixe vídeos em alta definição, sem marcas d'água, de mais de 1.000 redes globais diretamente pelo navegador.",
+            auradownBtn: "INICIAR DOWNLOADER_WEB",
+            thunderDesc: "Módulo Android de segurança extrema. Gerenciador de memória flash com acesso raiz e cofre criptografado invisível ao sistema.",
+            thunderBtn: "ACESSAR SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        es: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Plataforma web de extracción de medios. Descarga videos en alta definición, sin marcas de agua, de más de 1,000 redes globales directamente en tu navegador.",
+            auradownBtn: "INICIAR WEB_DOWNLOADER",
+            thunderDesc: "Módulo Android de seguridad extrema. Administrador de memoria flash con acceso root y bóveda encriptada invisible al sistema.",
+            thunderBtn: "ACCEDER SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        fr: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Plateforme web d'extraction de médias. Téléchargez des vidéos haute définition, sans filigrane, depuis plus de 1 000 réseaux mondiaux directement via le navigateur.",
+            auradownBtn: "INITIER WEB_DOWNLOADER",
+            thunderDesc: "Module Android de sécurité extrême. Gestionnaire de mémoire flash avec accès root et coffre-fort crypté invisible pour le système.",
+            thunderBtn: "ACCÉDER SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        de: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Web-Plattform zur Medienextraktion. Laden Sie hochauflösende Videos ohne Wasserzeichen aus über 1.000 globalen Netzwerken direkt über Ihren Browser herunter.",
+            auradownBtn: "WEB_DOWNLOADER STARTEN",
+            thunderDesc: "Android-Modul für extreme Sicherheit. Flash-Speicher-Manager mit Root-Zugriff und verschlüsseltem Tresor, der für das System unsichtbar ist.",
+            thunderBtn: "ZUGRIFF SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        it: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Piattaforma web di estrazione multimediale. Scarica video ad alta definizione, senza filigrana, da oltre 1.000 reti globali direttamente tramite il browser.",
+            auradownBtn: "AVVIA WEB_DOWNLOADER",
+            thunderDesc: "Modulo Android di massima sicurezza. Gestore di memoria flash con accesso root e cassaforte crittografata invisibile al sistema.",
+            thunderBtn: "ACCEDI SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        ru: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "Веб-платформа для извлечения медиа. Скачивайте видео высокой четкости без водяных знаков из более чем 1000 глобальных сетей прямо через браузер.",
+            auradownBtn: "ЗАПУСТИТЬ WEB_DOWNLOADER",
+            thunderDesc: "Модуль Android экстремальной безопасности. Менеджер флэш-памяти с root-доступом и зашифрованным сейфом, невидимым для системы.",
+            thunderBtn: "ДОСТУП К SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        ja: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "メディア抽出ウェブプラットフォーム。ブラウザから直接、1,000以上のグローバルネットワークから透かしのない高解像度動画をダウンロードします。",
+            auradownBtn: "WEB_DOWNLOADER を起動",
+            thunderDesc: "極限のセキュリティAndroidモジュール。ルートアクセスを備えたフラッシュメモリマネージャーと、システムから見えない暗号化された金庫。",
+            thunderBtn: "SYS_MODULE にアクセス",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        zh: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "媒体提取网络平台。直接通过浏览器从 1,000 多个全球网络下载无水印的高清视频。",
+            auradownBtn: "启动 WEB_DOWNLOADER",
+            thunderDesc: "极端安全的 Android 模块。具有 root 访问权限的闪存管理器和对系统不可见的加密保险箱。",
+            thunderBtn: "访问 SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        ko: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "미디어 추출 웹 플랫폼. 브라우저를 통해 1,000개 이상의 글로벌 네트워크에서 워터마크 없는 고화질 비디오를 직접 다운로드하세요.",
+            auradownBtn: "WEB_DOWNLOADER 시작",
+            thunderDesc: "극강의 보안 Android 모듈. 루트 액세스 권한이 있는 플래시 메모리 관리자와 시스템에 보이지 않는 암호화된 금고.",
+            thunderBtn: "SYS_MODULE 액세스",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        ar: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "منصة ويب لاستخراج الوسائط. قم بتنزيل مقاطع فيديو عالية الدقة، خالية من العلامات المائية، من أكثر من 1000 شبكة عالمية مباشرة عبر متصفحك.",
+            auradownBtn: "بدء WEB_DOWNLOADER",
+            thunderDesc: "وحدة Android فائقة الأمان. مدير ذاكرة فلاش مع وصول الجذر وخزنة مشفرة غير مرئية للنظام.",
+            thunderBtn: "الوصول إلى SYS_MODULE",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
+        },
+        hi: {
+            subtitle: ">> SELECT_DESTINATION_NODE",
+            auradownDesc: "मीडिया निष्कर्षण वेब प्लेटफ़ॉर्म। 1,000 से अधिक वैश्विक नेटवर्क से सीधे अपने ब्राउज़र के माध्यम से बिना वॉटरमार्क वाले उच्च-परिभाषा वीडियो डाउनलोड करें।",
+            auradownBtn: "WEB_DOWNLOADER प्रारंभ करें",
+            thunderDesc: "अत्यधिक सुरक्षा Android मॉड्यूल। रूट एक्सेस और सिस्टम के लिए अदृश्य एन्क्रिप्टेड वॉल्ट के साथ फ्लैश मेमोरी मैनेजर।",
+            thunderBtn: "SYS_MODULE एक्सेस करें",
+            footer: "SYS_LOG: © 2026 AURABTIS ECOSYSTEM. ALL NODES ONLINE."
         }
+    };
 
-        var t = i18n[activeLang];
+    function changeLanguage(langCode) {
+        const t = translations[langCode] || translations['pt'];
 
-        // Aplica as traduções no HTML
-        document.documentElement.lang = t.langCode;
-        document.getElementById("page-title").innerText = t.pageTitle;
-        document.getElementById("meta-desc").setAttribute("content", t.metaDesc);
-
+        document.documentElement.lang = langCode;
         document.getElementById("t-subtitle").innerText = t.subtitle;
         document.getElementById("t-auradown-desc").innerText = t.auradownDesc;
         document.getElementById("t-auradown-btn").innerText = t.auradownBtn;
         document.getElementById("t-thunder-desc").innerText = t.thunderDesc;
         document.getElementById("t-thunder-btn").innerText = t.thunderBtn;
-        document.getElementById("t-footer").innerHTML = t.footer;
+        document.getElementById("t-footer").innerText = t.footer;
 
-        // Adiciona direção da direita para a esquerda (RTL) se for Árabe
-        if (activeLang === "ar") {
-            document.body.setAttribute("dir", "rtl");
+        // RTL support para idiomas como Árabe
+        document.body.setAttribute("dir", langCode === "ar" ? "rtl" : "ltr");
+    }
+
+    // Deteção automática do idioma do utilizador
+    window.onload = function() {
+        var params = new URLSearchParams(window.location.search);
+        var queryLang = params.get("lang");
+        var browserLang = (navigator.language || navigator.userLanguage || "pt").slice(0, 2).toLowerCase();
+
+        var activeLang = "pt";
+        if (queryLang && translations[queryLang]) {
+            activeLang = queryLang;
+        } else if (translations[browserLang]) {
+            activeLang = browserLang;
         }
 
-    })();
+        document.getElementById("languageSelect").value = activeLang;
+        changeLanguage(activeLang);
+    };
 </script>
-
 </body>
 </html>
